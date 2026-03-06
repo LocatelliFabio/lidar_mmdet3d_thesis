@@ -1,0 +1,14 @@
+sudo apt install cmake
+https://github.com/RoboSense-LiDAR/rs_driver
+
+sudo apt install pybind11-dev
+
+((Apri driver_param.hpp e cerca nell'enum LidarType il tipo corrispondente al sensore))
+
+Attiva env conda
+Dentro bridge/build:
+cmake .. -DPYTHON_EXECUTABLE=$(which python)
+make -j
+
+((make -j per ricompilare))
+

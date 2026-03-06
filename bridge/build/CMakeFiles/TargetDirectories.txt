@@ -1,0 +1,3 @@
+/home/fabio/Desktop/lidar_mmdet3d_thesis/bridge/build/CMakeFiles/rs_bridge.dir
+/home/fabio/Desktop/lidar_mmdet3d_thesis/bridge/build/CMakeFiles/edit_cache.dir
+/home/fabio/Desktop/lidar_mmdet3d_thesis/bridge/build/CMakeFiles/rebuild_cache.dir

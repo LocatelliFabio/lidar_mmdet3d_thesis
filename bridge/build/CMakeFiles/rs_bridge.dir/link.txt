@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC -flto -shared  -o rs_bridge.cpython-38-x86_64-linux-gnu.so CMakeFiles/rs_bridge.dir/rs_bridge.cpp.o  -lpcap -lpcap -ldl 
