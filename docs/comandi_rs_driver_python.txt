@@ -1,0 +1,62 @@
+Comandi per ufw:
+sudo ufw allow in on eno2 to 192.168.1.102 port 6699 proto udp
+sudo ufw allow in on eno2 to 192.168.1.102 port 7788 proto udp
+sudo ufw reload
+sudo ufw status numbered
+
+
+Spiegazione:
+Verifica se il firewall sta bloccando:
+sudo nft list ruleset
+sudo iptables -L -n -v
+sudo iptables -t raw -L -n -v
+sudo iptables -t mangle -L -n -v
+
+
+Sì — il problema è UFW.
+
+Dal ruleset che hai incollato si vede chiaramente:
+
+INPUT ha policy drop
+
+in ufw-user-input è permesso solo TCP 22
+
+non c’è nessuna regola che permetta UDP 6699 o 7788
+
+Quindi succede esattamente questo:
+
+tcpdump vede i pacchetti sulla scheda eno2
+
+UFW li blocca nella chain INPUT
+
+per questo i socket UDP del tuo script non ricevono nulla
+
+rs_driver va in ERRCODE_MSOPTIMEOUT
+
+Questa è la prova che mancava.
+
+Correzione
+
+Apri esplicitamente le due porte UDP sull’interfaccia eno2 o sull’IP 192.168.1.102.
+
+La via più semplice:
+
+sudo ufw allow in on eno2 to 192.168.1.102 port 6699 proto udp
+sudo ufw allow in on eno2 to 192.168.1.102 port 7788 proto udp
+sudo ufw reload
+sudo ufw status numbered
+
+
+
+Alternativa:
+
+Ti consiglio solo di rendere la regola firewall un po’ più stretta, così accetti i pacchetti solo dal LiDAR:
+
+sudo ufw delete allow in on eno2 to 192.168.1.102 port 6699 proto udp
+sudo ufw delete allow in on eno2 to 192.168.1.102 port 7788 proto udp
+
+sudo ufw allow in on eno2 from 192.168.1.200 to 192.168.1.102 port 6699 proto udp
+sudo ufw allow in on eno2 from 192.168.1.200 to 192.168.1.102 port 7788 proto udp
+sudo ufw status numbered
+
+Così lasci aperto solo quello che serve al LiDAR.

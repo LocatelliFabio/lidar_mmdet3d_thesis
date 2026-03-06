@@ -254,10 +254,10 @@ def visualize_realtime(
 def main():
     bridge = RsBridge()
     bridge.configure(
-        host_ip="127.0.0.1",
+        host_ip="192.168.1.102",
         msop_port=6699,
         difop_port=7788,
-        use_rsp128=True,
+        use_rsp128=False,
         split_angle_deg=0.0
     )
     bridge.start()
