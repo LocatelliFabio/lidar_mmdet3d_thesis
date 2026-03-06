@@ -8,9 +8,11 @@ def get_point_cloud_callback() -> PointCloud:
 
 def return_point_cloud_callback(point_cloud: PointCloud):
     print(point_cloud)
+
     arr = point_cloud.numpy()
     print("shape:", arr.shape)
-    if arr.shape[0] > 0:
+
+    if arr is not None and arr.shape[0] > 0:
         print(arr[:5])
 
 
@@ -54,6 +56,7 @@ def main():
         while True:
             sleep(1)
     except KeyboardInterrupt:
+        print("Stopping driver...")
         driver.stop()
 
 
