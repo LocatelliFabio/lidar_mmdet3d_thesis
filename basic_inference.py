@@ -18,7 +18,7 @@ model = init_model(config, checkpoint, device='cuda:0')
 
 #pc_range = model.cfg.model.data_preprocessor.voxel_layer.point_cloud_range
 
-pcd_path = "pcd_tests/test07/test07 (Frame 0083).pcd"
+pcd_path = "pcd_tests/test07/test07 (Frame 0091).pcd"
 #pcd_path = "pcd_tests/test07_1_pcd/pcd_007.pcd"
 
 raw_points = read_pcd_xyzi_ascii(pcd_path)   # (N,4) float32

@@ -2,7 +2,6 @@ import numpy as np
 import open3d as o3d
 import matplotlib.pyplot as plt
 from pcd_reader import read_pcd_xyzi_ascii
-from preprocessing.pre_process import preprocess_raw_for_second
 
 def visualize_points(points: np.ndarray):
     """
