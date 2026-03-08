@@ -11,8 +11,8 @@ from rs_driver import (
     Error,
 )
 
-from detector_live import LiveDetector
-from viewer_live import LiveViewer
+from versione1.detector_live import LiveDetector
+from versione1.viewer_live import LiveViewer
 
 
 # =========================
