@@ -2,30 +2,31 @@ import numpy as np
 import open3d as o3d
 
 
-def create_oriented_boxes(boxes: np.ndarray):
-    line_sets = []
+LABEL_COLORS = {
+    0: (0, 1, 0),
+    1: (0, 0, 1),
+    2: (1, 0, 0),
+}
 
-    for box in boxes:
-        x, y, z, dx, dy, dz, yaw = box
 
-        center = np.array([x, y, z], dtype=np.float64)
-        extent = np.array([dx, dy, dz], dtype=np.float64)
+def create_oriented_boxes(boxes: np.ndarray, labels: np.ndarray):
+    geometries = []
 
-        rot = np.array([
-            [np.cos(yaw), -np.sin(yaw), 0.0],
-            [np.sin(yaw),  np.cos(yaw), 0.0],
-            [0.0,          0.0,         1.0]
-        ], dtype=np.float64)
+    for box, label in zip(boxes, labels):
+        center = box[:3].copy()
+        dims = box[3:6].copy()
+        yaw = float(box[6])
 
-        obb = o3d.geometry.OrientedBoundingBox(center, rot, extent)
-        ls = o3d.geometry.LineSet.create_from_oriented_bounding_box(obb)
+        yaw = -yaw + np.pi / 2
+        center[2] += dims[2] / 2.0
 
-        colors = np.tile(np.array([[1.0, 0.0, 0.0]]), (len(ls.lines), 1))
-        ls.colors = o3d.utility.Vector3dVector(colors)
+        R = o3d.geometry.get_rotation_matrix_from_axis_angle([0, 0, yaw])
 
-        line_sets.append(ls)
+        obb = o3d.geometry.OrientedBoundingBox(center, R, dims)
+        obb.color = LABEL_COLORS.get(int(label), (1, 1, 1))
+        geometries.append(obb)
 
-    return line_sets
+    return geometries
 
 
 class LiveViewer3D:
@@ -36,14 +37,14 @@ class LiveViewer3D:
         self.pcd = o3d.geometry.PointCloud()
         self.vis.add_geometry(self.pcd)
 
-        self.bbox_geometries = []
+        self.box_geometries = []
         self.first_frame = True
 
         render = self.vis.get_render_option()
         render.point_size = 3.0
         render.background_color = np.array([0, 0, 0])
 
-    def update(self, points: np.ndarray, boxes: np.ndarray):
+    def update(self, points: np.ndarray, boxes: np.ndarray, labels: np.ndarray):
         if points is not None and len(points) > 0:
             xyz = points[:, :3].astype(np.float64)
             self.pcd.points = o3d.utility.Vector3dVector(xyz)
@@ -53,13 +54,13 @@ class LiveViewer3D:
 
             self.vis.update_geometry(self.pcd)
 
-        for g in self.bbox_geometries:
+        for g in self.box_geometries:
             self.vis.remove_geometry(g, reset_bounding_box=False)
-        self.bbox_geometries.clear()
+        self.box_geometries.clear()
 
         if boxes is not None and len(boxes) > 0:
-            self.bbox_geometries = create_oriented_boxes(boxes)
-            for g in self.bbox_geometries:
+            self.box_geometries = create_oriented_boxes(boxes, labels)
+            for g in self.box_geometries:
                 self.vis.add_geometry(g, reset_bounding_box=False)
 
         if self.first_frame and points is not None and len(points) > 0:

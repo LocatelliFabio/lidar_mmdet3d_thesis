@@ -1,5 +1,3 @@
-# main.py
-
 from time import sleep
 import numpy as np
 
@@ -17,6 +15,17 @@ from rs_lidar_stream import RSLidarStream
 from preprocessing.pre_process import preprocess_raw_for_second
 from detector import SecondDetector
 from live_viewer import LiveViewer3D
+
+
+def rs_to_model_coords(points: np.ndarray) -> np.ndarray:
+    # print(points[:5])
+    out = points.copy()
+    out[:, 0] = points[:, 1]
+    out[:, 1] = points[:, 2]
+    out[:, 2] = points[:, 0]
+    if points.shape[1] > 3:
+        out[:, 3] = points[:, 3]
+    return out
 
 
 def main():
@@ -46,29 +55,24 @@ def main():
                 sleep(0.01)
                 continue
 
-            # test_points = raw_points.copy()
-            # test_points[:, 0] = raw_points[:, 1]
-            # test_points[:, 1] = -raw_points[:, 0]
-            # test_points[:, 2] = raw_points[:, 2]
+            model_points = rs_to_model_coords(raw_points)
 
-            # raw_points = test_points
-
-            processed_points = preprocess_raw_for_second(raw_points, **PREPROCESS_CFG)
-
-            # print(processed_points[:5])
+            processed_points = preprocess_raw_for_second(model_points, **PREPROCESS_CFG)
 
             if len(processed_points) == 0:
-                viewer.update(processed_points, np.empty((0, 7), dtype=np.float32))
+                viewer.update(processed_points,
+                              np.empty((0, 7), dtype=np.float32),
+                              np.empty((0,), dtype=np.int64))
                 sleep(0.01)
                 continue
 
             result = detector.infer(processed_points)
             boxes, scores, labels = detector.extract_predictions(result, score_thr=SCORE_THR)
 
-            viewer.update(raw_points, boxes)
+            viewer.update(processed_points, boxes, labels)
 
             print(
-                f"raw={len(raw_points)} | processed={len(processed_points)} | detections={len(boxes)}",
+                f"raw={len(raw_points)} | processed={len(processed_points)} | det={len(boxes)}",
                 end="\r"
             )
 
