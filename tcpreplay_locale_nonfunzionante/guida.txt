@@ -1,0 +1,25 @@
+tcprewrite \
+  --infile=input.pcap \
+  --outfile=rewrite.pcap \
+  --dstipmap=0.0.0.0/0:10.10.10.2
+
+
+chmod +x setup_pcap_env.sh cleanup_pcap_env.sh
+
+./setup_pcap_env.sh
+
+Verifica: {
+    sudo ip netns exec pcapns ip addr
+    Dovresti vedere 10.10.10.2/24 su veth1.
+}
+
+Per trovare il binario di python corretto:
+1. Attivare ambiente conda
+2. which python
+3. Inserire il risultato nel comando sotto
+
+sudo ip netns exec pcapns /percorso/completo/al/tuo/env/bin/python tua_app.py
+
+sudo tcpreplay -i veth0 file.pcap
+
+./cleanup_pcap_env.sh

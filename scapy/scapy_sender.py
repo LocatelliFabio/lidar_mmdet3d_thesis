@@ -6,7 +6,7 @@
 import socket
 from scapy.all import rdpcap, UDP
 
-pcap_file = "scapy/test15.pcap"
+pcap_file = "scapy/RubyPcap70000pacchetti.pcap"
 pkts = rdpcap(pcap_file)
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
