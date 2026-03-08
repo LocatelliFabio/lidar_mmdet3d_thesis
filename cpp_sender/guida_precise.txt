@@ -1,0 +1,127 @@
+Guida rapida – uso di replay_udp_precise
+
+Questo programma legge un file PCAP, estrae i pacchetti UDP e reinvia il payload UDP verso 127.0.0.1 sulla porta originale.
+Tutti i pacchetti vengono prima caricati in memoria per rendere il replay più stabile e veloce.
+
+---
+
+1. Compilazione
+
+---
+
+g++ -O3 -march=native -std=c++17 replay_udp_precise.cpp -lpcap -o replay_udp_precise
+
+Compila il programma C++ con ottimizzazioni elevate e crea l'eseguibile "replay_udp_precise".
+
+---
+
+2. Replay alla massima velocità
+
+---
+
+./replay_udp_precise file.pcap --fast
+
+Invia tutti i pacchetti UDP il più velocemente possibile, ignorando i timestamp del PCAP.
+
+Quando usarlo:
+
+* test rapidi
+* stress test del ricevitore
+* verifica che il programma ricevente funzioni
+
+---
+
+3. Replay con timing originale
+
+---
+
+./replay_udp_precise file.pcap --timed
+
+Riproduce i pacchetti rispettando gli intervalli temporali originali del PCAP.
+
+Quando usarlo:
+
+* simulazione del comportamento reale del sensore
+* test realistici del sistema ricevente
+
+---
+
+4. Replay temporizzato con maggiore precisione
+
+---
+
+./replay_udp_precise file.pcap --timed --spin-us 100
+
+Uguale a "--timed", ma usa una breve attesa attiva (spin wait) negli ultimi microsecondi prima dell'invio.
+
+Effetto:
+
+* riduce il jitter
+* migliora la precisione temporale
+* usa più CPU
+
+Valori tipici:
+--spin-us 50   → meno CPU, buona precisione
+--spin-us 100  → compromesso consigliato
+--spin-us 200  → più preciso, più CPU
+
+---
+
+5. Bloccare il processo su una CPU
+
+---
+
+./replay_udp_precise file.pcap --timed --cpu0
+
+Esegue il replay temporizzato e fissa il processo sul core CPU 0.
+
+Vantaggio:
+
+* riduce i ritardi dovuti alla migrazione tra core CPU.
+
+---
+
+6. Usare lo scheduler realtime
+
+---
+
+sudo ./replay_udp_precise file.pcap --timed --rt
+
+Attiva lo scheduler realtime (SCHED_FIFO).
+
+Vantaggio:
+
+* il processo ha priorità più alta
+* riduce i ritardi causati dal sistema operativo
+
+Richiede privilegi sudo.
+
+---
+
+7. Modalità consigliata per replay realistico
+
+---
+
+sudo ./replay_udp_precise file.pcap --timed --rt --cpu0 --spin-us 100
+
+Questa modalità:
+
+* rispetta i timestamp del PCAP
+* usa scheduler realtime
+* blocca il processo su una CPU
+* riduce il jitter con spin-wait
+
+È la configurazione consigliata per simulare sensori o dispositivi che generano traffico con timing preciso.
+
+---
+
+## Note
+
+Il programma:
+
+* legge prima tutto il PCAP in memoria
+* invia solo payload UDP
+* usa la porta UDP originale dei pacchetti
+* invia i dati verso 127.0.0.1
+
+Il ricevitore deve quindi essere in esecuzione sulla stessa macchina e in ascolto sulle porte UDP presenti nel PCAP.

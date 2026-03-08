@@ -1,0 +1,16 @@
+g++ -O3 -march=native -std=c++17 replay_udp.cpp -lpcap -o replay_udp
+
+./replay_udp ../scapy/RubyPcap70000pacchetti.pcap --timed
+./replay_udp ../scapy/RubyPcap70000pacchetti.pcap --fast
+
+
+=================================
+
+g++ -O3 -march=native -std=c++17 replay_udp_precise.cpp -lpcap -o replay_udp_precise
+
+./replay_udp_precise file.pcap --fast
+./replay_udp_precise file.pcap --timed
+
+./replay_udp_precise RubyPcap70000pacchetti.pcap --timed --spin-us 100
+sudo ./replay_udp_precise RubyPcap70000pacchetti.pcap --timed --rt --cpu0 --spin-us 100
+
