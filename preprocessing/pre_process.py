@@ -35,6 +35,7 @@ def remove_ground_grid(points: np.ndarray, cell=0.5, thresh=0.05,
 def grid_average_downsample_xyzi(points: np.ndarray, voxel=0.08,
                                  pc_range=(0, -40, -3, 70.4, 40, 1)) -> np.ndarray:
     xmin, ymin, zmin, *_ = pc_range
+
     q = np.floor(
         (points[:, :3] - np.array([xmin, ymin, zmin], dtype=np.float32)) / voxel
     ).astype(np.int32)
@@ -50,12 +51,14 @@ def grid_average_downsample_xyzi(points: np.ndarray, voxel=0.08,
     out[:, 1] = np.bincount(inv, weights=points[:, 1], minlength=n) / counts
     out[:, 2] = np.bincount(inv, weights=points[:, 2], minlength=n) / counts
     out[:, 3] = np.bincount(inv, weights=points[:, 3], minlength=n) / counts
-    return out.astype(np.float32)
+
+    return out.astype(np.float32, copy=False)
 
 
 def voxel_occupancy_denoise(points: np.ndarray, voxel=0.25, min_pts=2,
                             pc_range=(0, -40, -3, 70.4, 40, 1)) -> np.ndarray:
     xmin, ymin, zmin, *_ = pc_range
+
     q = np.floor(
         (points[:, :3] - np.array([xmin, ymin, zmin], dtype=np.float32)) / voxel
     ).astype(np.int32)
@@ -65,6 +68,7 @@ def voxel_occupancy_denoise(points: np.ndarray, voxel=0.25, min_pts=2,
 
     _, inv, counts = np.unique(key, return_inverse=True, return_counts=True)
     keep = counts[inv] >= min_pts
+
     return points[keep]
 
 
@@ -93,6 +97,7 @@ def preprocess_raw_for_second(points: np.ndarray,
 
     xmin, ymin, zmin, xmax, ymax, zmax = pc_range
     x, y, z = points[:, 0], points[:, 1], points[:, 2]
+
     m = (
         (x >= xmin) & (x <= xmax) &
         (y >= ymin) & (y <= ymax) &

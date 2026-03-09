@@ -1,3 +1,5 @@
+# detection/detector.py
+
 import numpy as np
 from mmdet3d.apis import init_model, inference_detector
 
@@ -9,12 +11,11 @@ class SecondDetector:
     def infer(self, points: np.ndarray):
         if points is None or len(points) == 0:
             return None
-
-        result, data = inference_detector(self.model, points)
+        result, _ = inference_detector(self.model, points)
         return result
 
     @staticmethod
-    def extract_predictions(result, score_thr=0.3):
+    def extract_predictions(result, score_thr=0.2):
         if result is None:
             return (
                 np.empty((0, 7), dtype=np.float32),
@@ -28,4 +29,9 @@ class SecondDetector:
         boxes = pred.bboxes_3d.tensor.detach().cpu().numpy()
 
         keep = scores >= score_thr
-        return boxes[keep], scores[keep], labels[keep]
+
+        return (
+            boxes[keep].astype(np.float32, copy=False),
+            scores[keep].astype(np.float32, copy=False),
+            labels[keep].astype(np.int64, copy=False),
+        )
