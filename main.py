@@ -19,6 +19,10 @@ from preprocessing.pre_process import preprocess_raw_for_second
 from detector import SecondDetector
 from live_viewer import LiveViewer3D
 
+from preprocessing.crop_pcd import crop_pcd
+
+from show_points import visualize_points
+
 
 def rs_to_model_coords(points: np.ndarray) -> np.ndarray:
     return points.copy()
@@ -66,7 +70,9 @@ def main():
             print("MODEL min xyz:", model_points[:, :3].min(axis=0))
             print("MODEL max xyz:", model_points[:, :3].max(axis=0))
 
-            processed_points = preprocess_raw_for_second(model_points, **PREPROCESS_CFG)
+            # processed_points = preprocess_raw_for_second(model_points, **PREPROCESS_CFG)
+
+            processed_points = crop_pcd(raw_finite)
 
             if len(processed_points) > 0:
                 print("processed min xyz:", processed_points[:, :3].min(axis=0))

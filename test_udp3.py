@@ -30,7 +30,7 @@ def main():
 
     param.input_param.msop_port = 6699
     param.input_param.difop_port = 7788
-    param.input_param.host_address = "0.0.0.0"
+    param.input_param.host_address = "192.168.1.102"
     param.input_param.group_address = "0.0.0.0"
 
     param.print()

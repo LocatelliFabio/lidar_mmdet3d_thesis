@@ -36,6 +36,6 @@ def visualize_points(points: np.ndarray):
     o3d.visualization.draw_geometries([pcd])
 
 if __name__ == "__main__":
-    pcd_path = "extracted_bike_pcd/pcd_bike_047.pcd"
+    pcd_path = "pcd_tests/mtb/test12/1_pcd/pcd_021.pcd"
     points = read_pcd_xyzi_ascii(pcd_path)
     visualize_points(points)
