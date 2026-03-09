@@ -21,8 +21,6 @@ from live_viewer import LiveViewer3D
 
 from preprocessing.crop_pcd import crop_pcd
 
-from show_points import visualize_points
-
 from rs_to_model_coords import rs_to_model_coords
 
 def main():

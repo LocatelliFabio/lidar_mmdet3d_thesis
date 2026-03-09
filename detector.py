@@ -1,4 +1,4 @@
-# detection/detector.py
+# detector.py
 
 import numpy as np
 from mmdet3d.apis import init_model, inference_detector

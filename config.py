@@ -5,7 +5,7 @@ MODEL_CHECKPOINT = 'mmdet3d/checkpoints/hv_second_secfpn_fp16_6x8_80e_kitti-3d-3
 MODEL_DEVICE = 'cuda:0'
 
 CLASS_NAMES = ['Pedestrian', 'Cyclist', 'Car']
-SCORE_THR = 0.20
+SCORE_THR = 0.30
 
 PC_RANGE = (0, -40, -3, 70.4, 40, 1)
 

@@ -1,3 +1,5 @@
+# basic_inference.py
+
 import numpy as np
 from mmdet3d.apis import init_model, inference_detector
 from pcd_reader import read_pcd_xyzi_ascii
@@ -34,19 +36,19 @@ print_min_max(raw_points)
 #points = crop_point_cloud(points)
 #points[:, 3] = np.clip(points[:, 3], 0, 255) / 255.0
 
-# timed_pipeline(
-#     raw_points,
-#     model,
-#     preprocess_fn=lambda x: preprocess_raw_for_second(
-#         x,
-#         ds_voxel=0.10,
-#         denoise=False,
-#         ground_cell=0.5,
-#         ground_thresh=0.05
-#     ),
-#     runs=20
-# )
-# exit()
+timed_pipeline(
+    raw_points,
+    model,
+    preprocess_fn=lambda x: preprocess_raw_for_second(
+        x,
+        ds_voxel=0.10,
+        denoise=False,
+        ground_cell=0.5,
+        ground_thresh=0.05
+    ),
+    runs=20
+)
+exit()
 
 points = preprocess_raw_for_second(raw_points)
 

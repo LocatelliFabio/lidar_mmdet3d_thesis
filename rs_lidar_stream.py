@@ -1,4 +1,4 @@
-# lidar/rs_lidar_stream.py
+# rs_lidar_stream.py
 
 import numpy as np
 

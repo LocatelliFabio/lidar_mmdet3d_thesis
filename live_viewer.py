@@ -1,4 +1,4 @@
-# visualization/live_viewer.py
+# live_viewer.py
 
 import numpy as np
 import open3d as o3d

@@ -1,4 +1,4 @@
-# utils/thread_safe_buffer.py
+# thread_safe_buffer.py
 
 from threading import Lock
 
