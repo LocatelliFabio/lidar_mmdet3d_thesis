@@ -1,5 +1,9 @@
+import numpy as np
 from time import sleep
 from rs_driver import RSDriverParam, InputType, LidarType, LidarDriver, PointCloud, Error
+
+from print_min_max_nparray import print_min_max
+
 
 
 def get_point_cloud_callback() -> PointCloud:
@@ -10,8 +14,14 @@ def return_point_cloud_callback(point_cloud: PointCloud):
     print(point_cloud)
     arr = point_cloud.numpy()
     print("shape:", arr.shape)
+
+    # Rimuove righe con NaN
+    arr = arr[np.isfinite(arr).all(axis=1)]
+
     if arr.shape[0] > 0:
-        print(arr[:5])
+        # print(arr[:5])
+        print_min_max(arr)
+
 
 
 def exception_callback(error: Error):
@@ -30,7 +40,7 @@ def main():
 
     param.input_param.msop_port = 6699
     param.input_param.difop_port = 7788
-    param.input_param.host_address = "192.168.1.102"
+    param.input_param.host_address = "0.0.0.0"
     param.input_param.group_address = "0.0.0.0"
 
     param.print()

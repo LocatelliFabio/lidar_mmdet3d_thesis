@@ -7,6 +7,10 @@ from preprocessing.pre_process import preprocess_raw_for_second
 
 from timedpipeline import timed_pipeline
 
+from show_points2 import show_points_grid
+
+from print_min_max_nparray import print_min_max
+
 config = 'mmdet3d/configs/second/second_hv_secfpn_8xb6-amp-80e_kitti-3d-3class.py'
 checkpoint = 'mmdet3d/checkpoints/hv_second_secfpn_fp16_6x8_80e_kitti-3d-3class_20200925_110059-05f67bdf.pth'
 model = init_model(config, checkpoint, device='cuda:0')
@@ -18,12 +22,14 @@ model = init_model(config, checkpoint, device='cuda:0')
 
 #pc_range = model.cfg.model.data_preprocessor.voxel_layer.point_cloud_range
 
-pcd_path = "pcd_tests/test07/test07 (Frame 0091).pcd"
+pcd_path = "data/test10/test10/0_original/test10 (Frame 0044).pcd"
 #pcd_path = "pcd_tests/test07_1_pcd/pcd_007.pcd"
 
 raw_points = read_pcd_xyzi_ascii(pcd_path)   # (N,4) float32
 #print(len(points))
 #print(points[:5])
+
+print_min_max(raw_points)
 
 #points = crop_point_cloud(points)
 #points[:, 3] = np.clip(points[:, 3], 0, 255) / 255.0
@@ -67,4 +73,6 @@ for cls_id, name in [(0,"Pedestrian"), (1,"Cyclist"), (2,"Car")]:
 #print(points)
 #preview_yaw_conventions(points, result, score_thr=0.2)
 visualize_bboxes_with_scores(points, result)
+
+show_points_grid(raw_points)
 #visualize_points_and_bboxes(points, result)
