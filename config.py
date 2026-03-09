@@ -1,10 +1,10 @@
 # config.py
 
-MODEL_CONFIG = 'mmdet3d/configs/second/second_hv_secfpn_8xb6-amp-80e_kitti-3d-3class.py'
-MODEL_CHECKPOINT = 'mmdet3d/checkpoints/hv_second_secfpn_fp16_6x8_80e_kitti-3d-3class_20200925_110059-05f67bdf.pth'
-MODEL_DEVICE = 'cuda:0'
+MODEL_CONFIG = "mmdet3d/configs/second/second_hv_secfpn_8xb6-amp-80e_kitti-3d-3class.py"
+MODEL_CHECKPOINT = "mmdet3d/checkpoints/hv_second_secfpn_fp16_6x8_80e_kitti-3d-3class_20200925_110059-05f67bdf.pth"
+MODEL_DEVICE = "cuda:0"
 
-CLASS_NAMES = ['Pedestrian', 'Cyclist', 'Car']
+CLASS_NAMES = ["Pedestrian", "Cyclist", "Car"]
 SCORE_THR = 0.30
 
 PC_RANGE = (0, -40, -3, 70.4, 40, 1)
@@ -22,7 +22,7 @@ PREPROCESS_CFG = {
 LIDAR_CFG = {
     "msop_port": 6699,
     "difop_port": 7788,
-    "host_address": "0.0.0.0",
+    "host_address": "192.168.1.102",
     "group_address": "0.0.0.0",
 }
 
@@ -32,3 +32,6 @@ VIEWER_CFG = {
     "height": 720,
     "point_size": 3.0,
 }
+
+LOOP_SLEEP_SEC = 0.01
+ENABLE_DEBUG_LOGS = False

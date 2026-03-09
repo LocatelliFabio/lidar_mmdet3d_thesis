@@ -23,7 +23,11 @@ class RSLidarStream:
 
     def _return_point_cloud_callback(self, point_cloud: PointCloud):
         arr = point_cloud.numpy()
-        if arr is None or arr.shape[0] == 0:
+        if arr is None:
+            return
+
+        arr = np.asarray(arr)
+        if arr.ndim != 2 or arr.shape[0] == 0 or arr.shape[1] < 3:
             return
 
         if arr.shape[1] >= 4:
@@ -33,7 +37,6 @@ class RSLidarStream:
             intensity = np.zeros((xyz.shape[0], 1), dtype=np.float32)
             points = np.hstack((xyz, intensity))
 
-        # rimuovi punti non finiti già qui
         finite_mask = np.isfinite(points[:, :3]).all(axis=1)
         points = points[finite_mask]
 
@@ -59,7 +62,7 @@ class RSLidarStream:
 
         self.driver.register_point_cloud_callback(
             self._get_point_cloud_callback,
-            self._return_point_cloud_callback
+            self._return_point_cloud_callback,
         )
         self.driver.register_exception_callback(self._exception_callback)
 

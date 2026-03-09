@@ -12,6 +12,10 @@ class LatestValueBuffer:
         with self._lock:
             self._value = value
 
+    def get(self):
+        with self._lock:
+            return self._value
+
     def get_copy(self):
         with self._lock:
             if self._value is None:

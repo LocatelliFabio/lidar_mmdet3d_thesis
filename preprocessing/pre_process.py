@@ -3,14 +3,18 @@
 import numpy as np
 
 
-def remove_ground_grid(points: np.ndarray, cell=0.5, thresh=0.05,
-                       pc_range=(0, -40, -3, 70.4, 40, 1)) -> np.ndarray:
+def remove_ground_grid(
+    points: np.ndarray,
+    cell=0.5,
+    thresh=0.05,
+    pc_range=(0, -40, -3, 70.4, 40, 1),
+) -> np.ndarray:
     xmin, ymin, *_ = pc_range
     x, y, z = points[:, 0], points[:, 1], points[:, 2]
 
     gx = np.floor((x - xmin) / cell).astype(np.int32)
     gy = np.floor((y - ymin) / cell).astype(np.int32)
-    keys = (gx.astype(np.int64) << 32) | (gy.astype(np.int64) & 0xffffffff)
+    keys = (gx.astype(np.int64) << 32) | (gy.astype(np.int64) & 0xFFFFFFFF)
 
     order = np.argsort(keys)
     keys_s = keys[order]
@@ -32,8 +36,11 @@ def remove_ground_grid(points: np.ndarray, cell=0.5, thresh=0.05,
     return points[keep]
 
 
-def grid_average_downsample_xyzi(points: np.ndarray, voxel=0.08,
-                                 pc_range=(0, -40, -3, 70.4, 40, 1)) -> np.ndarray:
+def grid_average_downsample_xyzi(
+    points: np.ndarray,
+    voxel=0.08,
+    pc_range=(0, -40, -3, 70.4, 40, 1),
+) -> np.ndarray:
     xmin, ymin, zmin, *_ = pc_range
 
     q = np.floor(
@@ -51,12 +58,15 @@ def grid_average_downsample_xyzi(points: np.ndarray, voxel=0.08,
     out[:, 1] = np.bincount(inv, weights=points[:, 1], minlength=n) / counts
     out[:, 2] = np.bincount(inv, weights=points[:, 2], minlength=n) / counts
     out[:, 3] = np.bincount(inv, weights=points[:, 3], minlength=n) / counts
+    return out
 
-    return out.astype(np.float32, copy=False)
 
-
-def voxel_occupancy_denoise(points: np.ndarray, voxel=0.25, min_pts=2,
-                            pc_range=(0, -40, -3, 70.4, 40, 1)) -> np.ndarray:
+def voxel_occupancy_denoise(
+    points: np.ndarray,
+    voxel=0.25,
+    min_pts=2,
+    pc_range=(0, -40, -3, 70.4, 40, 1),
+) -> np.ndarray:
     xmin, ymin, zmin, *_ = pc_range
 
     q = np.floor(
@@ -68,23 +78,24 @@ def voxel_occupancy_denoise(points: np.ndarray, voxel=0.25, min_pts=2,
 
     _, inv, counts = np.unique(key, return_inverse=True, return_counts=True)
     keep = counts[inv] >= min_pts
-
     return points[keep]
 
 
-def preprocess_raw_for_second(points: np.ndarray,
-                              pc_range=(0, -40, -3, 70.4, 40, 1),
-                              ds_voxel=0.08,
-                              denoise=False,
-                              den_voxel=0.35,
-                              den_min_pts=2,
-                              ground_cell=0.5,
-                              ground_thresh=0.07):
-    if points is None or len(points) == 0:
+def preprocess_raw_for_second(
+    points: np.ndarray,
+    pc_range=(0, -40, -3, 70.4, 40, 1),
+    ds_voxel=0.08,
+    denoise=False,
+    den_voxel=0.35,
+    den_min_pts=2,
+    ground_cell=0.5,
+    ground_thresh=0.07,
+):
+    if points is None or points.shape[0] == 0:
         return np.empty((0, 4), dtype=np.float32)
 
     points = points[np.isfinite(points[:, :3]).all(axis=1)]
-    if len(points) == 0:
+    if points.shape[0] == 0:
         return np.empty((0, 4), dtype=np.float32)
 
     points = points.astype(np.float32, copy=False)
@@ -98,32 +109,32 @@ def preprocess_raw_for_second(points: np.ndarray,
     xmin, ymin, zmin, xmax, ymax, zmax = pc_range
     x, y, z = points[:, 0], points[:, 1], points[:, 2]
 
-    m = (
+    keep = (
         (x >= xmin) & (x <= xmax) &
         (y >= ymin) & (y <= ymax) &
         (z >= zmin) & (z <= zmax)
     )
-    points = points[m]
+    points = points[keep]
 
-    if len(points) == 0:
+    if points.shape[0] == 0:
         return np.empty((0, 4), dtype=np.float32)
 
     points = grid_average_downsample_xyzi(points, voxel=ds_voxel, pc_range=pc_range)
 
-    if denoise and len(points) > 0:
+    if denoise and points.shape[0] > 0:
         points = voxel_occupancy_denoise(
             points,
             voxel=den_voxel,
             min_pts=den_min_pts,
-            pc_range=pc_range
+            pc_range=pc_range,
         )
 
-    if len(points) > 0:
+    if points.shape[0] > 0:
         points = remove_ground_grid(
             points,
             cell=ground_cell,
             thresh=ground_thresh,
-            pc_range=pc_range
+            pc_range=pc_range,
         )
 
     return points.astype(np.float32, copy=False)

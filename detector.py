@@ -1,17 +1,20 @@
 # detector.py
 
 import numpy as np
+import torch
 from mmdet3d.apis import init_model, inference_detector
 
 
 class SecondDetector:
-    def __init__(self, config_path: str, checkpoint_path: str, device='cuda:0'):
+    def __init__(self, config_path: str, checkpoint_path: str, device="cuda:0"):
         self.model = init_model(config_path, checkpoint_path, device=device)
 
     def infer(self, points: np.ndarray):
-        if points is None or len(points) == 0:
+        if points is None or points.shape[0] == 0:
             return None
-        result, _ = inference_detector(self.model, points)
+
+        with torch.no_grad():
+            result, _ = inference_detector(self.model, points)
         return result
 
     @staticmethod
