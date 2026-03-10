@@ -7,7 +7,7 @@ from preprocessing.pre_process import preprocess_raw_for_second
 from pcd_reader import read_pcd_xyzi_ascii
 from mmdet3d.apis import init_model, inference_detector
 
-pcd_files = sorted(glob.glob("pcd_tests/test07/*.pcd"))
+pcd_files = sorted(glob.glob("data/test15/*.pcd"))
 
 config = 'mmdet3d/configs/second/second_hv_secfpn_8xb6-amp-80e_kitti-3d-3class.py'
 checkpoint = 'mmdet3d/checkpoints/hv_second_secfpn_fp16_6x8_80e_kitti-3d-3class_20200925_110059-05f67bdf.pth'
@@ -32,4 +32,4 @@ print("Max speed (km/h):", vmax)
 print("Mean speed (km/h):", vmean)
 print("Distance steps (m):", dist_steps)
 
-export_bike_pcd(pcd_list, out_dir="extracted_bike_pcd")
+# export_bike_pcd(pcd_list, out_dir="extracted_bike_pcd")

@@ -69,6 +69,10 @@ def main():
                 continue
 
             model_points = rs_to_model_coords(raw_points)
+
+            # dz = -0.2
+            # model_points[:, 2] += dz
+
             processed_points = preprocess_raw_for_second(model_points, **PREPROCESS_CFG)
 
             log_cloud_stats("RAW", raw_points)
@@ -90,8 +94,9 @@ def main():
                 score_thr=SCORE_THR,
             )
 
-            viewer.update(processed_points, boxes, labels)
-
+            # viewer.update(processed_points, boxes, labels)
+            viewer.update(model_points, boxes, labels)
+            
             if ENABLE_DEBUG_LOGS:
                 print(
                     f"raw={len(raw_points)} | processed={len(processed_points)} | detections={len(boxes)}",

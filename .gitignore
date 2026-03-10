@@ -1,11 +1,9 @@
 __pycache__/
 data/
-preprocessing/__pycache__/pre_process.cpython-38.pyc
-preprocessing/__pycache__/pre_process.cpython-38.pyc
 __pycache__/config.cpython-38.pyc
-preprocessing/__pycache__/pre_process.cpython-38.pyc
-preprocessing/__pycache__/pre_process.cpython-38.pyc
 __pycache__/config.cpython-38.pyc
 preprocessing/__pycache__/pre_process.cpython-38.pyc
 pcap_files/
+pcd_tests/
+extracted_bike_pcd/
 pcd_tests/
