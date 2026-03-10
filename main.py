@@ -13,6 +13,7 @@ from config import (
     VIEWER_CFG,
     LOOP_SLEEP_SEC,
     ENABLE_DEBUG_LOGS,
+    SPEED_CFG,
 )
 
 from thread_safe_buffer import LatestValueBuffer
@@ -21,6 +22,7 @@ from preprocessing.pre_process import preprocess_raw_for_second
 from detector import SecondDetector
 from live_viewer import LiveViewer3D
 from rs_to_model_coords import rs_to_model_coords
+from cyclist_speed import RealTimeCyclistSpeedEstimator
 
 
 def log_cloud_stats(name: str, points: np.ndarray) -> None:
@@ -57,6 +59,8 @@ def main():
         point_size=VIEWER_CFG["point_size"],
     )
 
+    speed_estimator = RealTimeCyclistSpeedEstimator(**SPEED_CFG)
+
     lidar.start()
 
     try:
@@ -69,10 +73,6 @@ def main():
                 continue
 
             model_points = rs_to_model_coords(raw_points)
-
-            # dz = -0.2
-            # model_points[:, 2] += dz
-
             processed_points = preprocess_raw_for_second(model_points, **PREPROCESS_CFG)
 
             log_cloud_stats("RAW", raw_points)
@@ -81,7 +81,7 @@ def main():
 
             if processed_points.shape[0] == 0:
                 viewer.update(
-                    processed_points,
+                    model_points,
                     np.empty((0, 7), dtype=np.float32),
                     np.empty((0,), dtype=np.int64),
                 )
@@ -94,13 +94,32 @@ def main():
                 score_thr=SCORE_THR,
             )
 
-            # viewer.update(processed_points, boxes, labels)
+            speed_state = speed_estimator.update(
+                points_xyzi=processed_points,
+                boxes=boxes,
+                scores=scores,
+                labels=labels,
+            )
+
             viewer.update(model_points, boxes, labels)
-            
-            if ENABLE_DEBUG_LOGS:
+
+            if speed_state.detected:
                 print(
-                    f"raw={len(raw_points)} | processed={len(processed_points)} | detections={len(boxes)}",
-                    end="\r",
+                    f"Cyclist | pts={speed_state.num_points:4d} "
+                    f"| score={speed_state.score:.2f} "
+                    f"| v={speed_state.instant_kmh:6.2f} km/h "
+                    f"| v_smooth={speed_state.smooth_kmh:6.2f} km/h "
+                    f"| v_max={speed_state.max_kmh:6.2f} km/h "
+                    f"| dist={speed_state.total_distance_m:7.2f} m",
+                    #end="\r",
+                )
+            else:
+                print(
+                    "Cyclist | no detection"
+                    f" | v_smooth={speed_state.smooth_kmh:6.2f} km/h"
+                    f" | v_max={speed_state.max_kmh:6.2f} km/h"
+                    f" | dist={speed_state.total_distance_m:7.2f} m",
+                    #end="\r",
                 )
 
             sleep(LOOP_SLEEP_SEC)

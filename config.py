@@ -35,3 +35,12 @@ VIEWER_CFG = {
 
 LOOP_SLEEP_SEC = 0.01
 ENABLE_DEBUG_LOGS = False
+
+SPEED_CFG = {
+    "score_thr": 0.40,
+    "pad": (0.25, 0.25, 0.50),
+    "smoothing_window": 5,
+    "use_xy_only": True,
+    "min_points_in_box": 5,
+    "max_reasonable_speed_kmh": 80.0,
+}
