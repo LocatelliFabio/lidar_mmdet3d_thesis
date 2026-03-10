@@ -24,7 +24,7 @@ model = init_model(config, checkpoint, device='cuda:0')
 
 #pc_range = model.cfg.model.data_preprocessor.voxel_layer.point_cloud_range
 
-pcd_path = "data/test10/test10/0_original/test10 (Frame 0044).pcd"
+pcd_path = "data/test10/0_original/test10 (Frame 0044).pcd"
 #pcd_path = "pcd_tests/test07_1_pcd/pcd_007.pcd"
 
 raw_points = read_pcd_xyzi_ascii(pcd_path)   # (N,4) float32
@@ -36,19 +36,19 @@ print_min_max(raw_points)
 #points = crop_point_cloud(points)
 #points[:, 3] = np.clip(points[:, 3], 0, 255) / 255.0
 
-timed_pipeline(
-    raw_points,
-    model,
-    preprocess_fn=lambda x: preprocess_raw_for_second(
-        x,
-        ds_voxel=0.10,
-        denoise=False,
-        ground_cell=0.5,
-        ground_thresh=0.05
-    ),
-    runs=20
-)
-exit()
+# timed_pipeline(
+#     raw_points,
+#     model,
+#     preprocess_fn=lambda x: preprocess_raw_for_second(
+#         x,
+#         ds_voxel=0.10,
+#         denoise=False,
+#         ground_cell=0.5,
+#         ground_thresh=0.05
+#     ),
+#     runs=20
+# )
+# exit()
 
 points = preprocess_raw_for_second(raw_points)
 
@@ -74,7 +74,7 @@ for cls_id, name in [(0,"Pedestrian"), (1,"Cyclist"), (2,"Car")]:
 #print(result)
 #print(points)
 #preview_yaw_conventions(points, result, score_thr=0.2)
-visualize_bboxes_with_scores(points, result)
+visualize_bboxes_with_scores(raw_points, result)
 
-show_points_grid(raw_points)
+# show_points_grid(raw_points)
 #visualize_points_and_bboxes(points, result)
