@@ -57,6 +57,8 @@ def main():
         width=VIEWER_CFG["width"],
         height=VIEWER_CFG["height"],
         point_size=VIEWER_CFG["point_size"],
+        camera_position=VIEWER_CFG["camera_position"],
+        camera_lookat=VIEWER_CFG["camera_lookat"],
     )
 
     speed_estimator = RealTimeCyclistSpeedEstimator(**SPEED_CFG)
