@@ -137,7 +137,13 @@ class LiveViewer3D:
             xyz = points[:, :3].astype(np.float64, copy=False)
             self.pcd.points = o3d.utility.Vector3dVector(xyz)
 
-            colors = self._intensity_to_pseudocolor(points)
+            # == Scegli colore punti ==
+            # tutti i punti bianchi
+            colors = np.ones((xyz.shape[0], 3), dtype=np.float64)
+            # punti colorati
+            # colors = self._intensity_to_pseudocolor(points)
+
+
             self.pcd.colors = o3d.utility.Vector3dVector(colors)
 
             self.vis.update_geometry(self.pcd)
