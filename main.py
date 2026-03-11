@@ -61,19 +61,28 @@ def main():
 
     tracker = RealTimeCyclistTracker(**TRACKER_CFG)
 
+    last_processed_seq = -1
+    last_status_print = 0.0
+    status_print_period = 0.2
+
     lidar.start()
 
     try:
-        last_status_print = 0.0
-        time_to_print = 0.2
-        
         while True:
-            raw_points = frame_buffer.get_copy()
+            raw_points, seq, frame_ts = frame_buffer.get_copy()
 
             if raw_points is None or raw_points.shape[0] == 0:
                 viewer.spin_once()
                 sleep(LOOP_SLEEP_SEC)
                 continue
+
+            # evita di rielaborare lo stesso frame più volte
+            if seq == last_processed_seq:
+                viewer.spin_once()
+                sleep(LOOP_SLEEP_SEC)
+                continue
+
+            last_processed_seq = seq
 
             model_points = rs_to_model_coords(raw_points)
             processed_points = preprocess_raw_for_second(model_points, **PREPROCESS_CFG)
@@ -101,12 +110,13 @@ def main():
                 boxes=boxes,
                 scores=scores,
                 labels=labels,
+                timestamp=frame_ts,
             )
 
             viewer.update(model_points, boxes, labels)
 
             now = monotonic()
-            if now - last_status_print >= time_to_print:
+            if now - last_status_print >= status_print_period:
                 if track_state.detected:
                     print(
                         f"Cyclist "
@@ -115,17 +125,20 @@ def main():
                         f"| v_smooth={track_state.smooth_kmh:6.2f} km/h "
                         f"| v_mean={track_state.mean_kmh:6.2f} km/h "
                         f"| v_max={track_state.max_kmh:6.2f} km/h "
-                        f"| dist={track_state.total_distance_m:7.2f} m",
-                        # end="\r",
+                        f"| dist={track_state.total_distance_m:7.2f} m "
+                        f"| match_max={track_state.allowed_match_distance_m:5.2f} m",
+                        end="\r",
                     )
                 else:
                     print(
                         f"Cyclist | no detection "
                         f"| v_smooth={track_state.smooth_kmh:6.2f} km/h "
                         f"| v_max={track_state.max_kmh:6.2f} km/h "
-                        f"| dist={track_state.total_distance_m:7.2f} m",
-                        # end="\r",
+                        f"| dist={track_state.total_distance_m:7.2f} m "
+                        f"| match_max={track_state.allowed_match_distance_m:5.2f} m",
+                        end="\r",
                     )
+
                 last_status_print = now
 
             sleep(LOOP_SLEEP_SEC)

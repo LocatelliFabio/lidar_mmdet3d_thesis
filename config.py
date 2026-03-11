@@ -39,8 +39,10 @@ ENABLE_DEBUG_LOGS = False
 TRACKER_CFG = {
     "score_thr": 0.40,
     "smoothing_window": 5,
-    "max_reasonable_speed_kmh": 80.0,
-    "max_match_distance_m": 4.0,
-    "max_missed_frames": 5,
+    "max_reasonable_speed_kmh": 50.0,
+    "max_match_distance_m": 1.5,
+    "max_missed_frames": 3,
     "prefer_high_score_when_unlocked": True,
+    "match_distance_margin_m": 0.30,
+    "match_distance_scale": 1.25,
 }

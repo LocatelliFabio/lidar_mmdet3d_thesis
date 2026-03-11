@@ -18,15 +18,18 @@ def fix_second_cyclist_box(
 ) -> np.ndarray:
     """
     Adatta la bbox Cyclist prodotta da SECOND alla convenzione usata
-    nella tua pipeline.
+    nella pipeline.
     """
     b = box7.copy()
 
+    # fix altezza
     b[2] = b[2] + sensor_height_fix
 
+    # swap dx/dy
     dx, dy = b[3], b[4]
     b[3], b[4] = dy, dx
 
+    # invert yaw
     b[6] = -b[6]
 
     return b
@@ -77,6 +80,7 @@ class CyclistTrackState:
     total_distance_m: float
     center_xyz: np.ndarray | None
     box7: np.ndarray | None
+    allowed_match_distance_m: float
 
 
 class RealTimeCyclistTracker:
@@ -84,16 +88,20 @@ class RealTimeCyclistTracker:
         self,
         score_thr: float = 0.40,
         smoothing_window: int = 5,
-        max_reasonable_speed_kmh: float = 80.0,
-        max_match_distance_m: float = 4.0,
-        max_missed_frames: int = 5,
+        max_reasonable_speed_kmh: float = 50.0,
+        max_match_distance_m: float = 1.5,
+        max_missed_frames: int = 3,
         prefer_high_score_when_unlocked: bool = True,
+        match_distance_margin_m: float = 0.30,
+        match_distance_scale: float = 1.25,
     ):
         self.score_thr = score_thr
         self.max_reasonable_speed_kmh = max_reasonable_speed_kmh
         self.max_match_distance_m = max_match_distance_m
         self.max_missed_frames = max_missed_frames
         self.prefer_high_score_when_unlocked = prefer_high_score_when_unlocked
+        self.match_distance_margin_m = match_distance_margin_m
+        self.match_distance_scale = match_distance_scale
 
         self.prev_center_xy = None
         self.prev_center_xyz = None
@@ -130,21 +138,37 @@ class RealTimeCyclistTracker:
 
         return candidates
 
-    def _pick_candidate(
-        self,
-        candidates,
-    ):
+    def _compute_allowed_match_distance(self, now: float) -> float:
+        """
+        La distanza massima di match cresce col tempo realmente passato dall'ultima
+        detection valida. Questo copre anche il caso in cui perdi 1 o più frame.
+        """
+        base = self.max_match_distance_m
+
+        if self.prev_time is None:
+            return base
+
+        dt = max(0.0, now - self.prev_time)
+
+        # distanza massima teorica data una velocità massima ragionevole
+        max_speed_mps = self.max_reasonable_speed_kmh / 3.6
+        dynamic_dist = (max_speed_mps * dt * self.match_distance_scale) + self.match_distance_margin_m
+
+        return max(base, dynamic_dist)
+
+    def _pick_candidate(self, candidates, now: float):
         if len(candidates) == 0:
-            return None, None
+            return None, None, self._compute_allowed_match_distance(now)
+
+        allowed_dist = self._compute_allowed_match_distance(now)
 
         if (not self.is_locked) or (self.prev_center_xy is None):
             if self.prefer_high_score_when_unlocked:
                 best = max(candidates, key=lambda x: x[1])
             else:
                 best = candidates[0]
-            return best[0], best[1]
+            return best[0], best[1], allowed_dist
 
-        # tracking per vicinanza alla posizione precedente
         prev_xy = self.prev_center_xy
         best_box = None
         best_score = None
@@ -154,7 +178,7 @@ class RealTimeCyclistTracker:
             cxy = box_bottom_center_xy(box)
             dist = np.linalg.norm(cxy - prev_xy)
 
-            if dist > self.max_match_distance_m:
+            if dist > allowed_dist:
                 continue
 
             # costo: privilegia vicinanza, ma premia anche score alto
@@ -166,9 +190,9 @@ class RealTimeCyclistTracker:
                 best_score = score
 
         if best_box is None:
-            return None, None
+            return None, None, allowed_dist
 
-        return best_box, best_score
+        return best_box, best_score, allowed_dist
 
     def update(
         self,
@@ -180,10 +204,11 @@ class RealTimeCyclistTracker:
         now = monotonic() if timestamp is None else float(timestamp)
 
         candidates = self._candidate_boxes(boxes, scores, labels)
-        box7, score = self._pick_candidate(candidates)
+        box7, score, allowed_dist = self._pick_candidate(candidates, now)
 
         if box7 is None:
             self.missed_frames += 1
+
             if self.missed_frames > self.max_missed_frames:
                 self.is_locked = False
                 self.prev_center_xy = None
@@ -196,12 +221,13 @@ class RealTimeCyclistTracker:
                 track_id=(self.track_id if self.is_locked else None),
                 score=None,
                 instant_kmh=0.0,
-                smooth_kmh=(self.speed_hist[-1] if len(self.speed_hist) > 0 else 0.0),
+                smooth_kmh=(float(np.mean(self.speed_hist)) if len(self.speed_hist) > 0 else 0.0),
                 mean_kmh=(self.sum_kmh / self.num_speed_samples if self.num_speed_samples > 0 else 0.0),
                 max_kmh=self.max_kmh,
                 total_distance_m=self.total_distance_m,
                 center_xyz=None,
                 box7=None,
+                allowed_match_distance_m=allowed_dist,
             )
 
         self.missed_frames = 0
@@ -245,4 +271,5 @@ class RealTimeCyclistTracker:
             total_distance_m=self.total_distance_m,
             center_xyz=center_xyz,
             box7=box7,
+            allowed_match_distance_m=allowed_dist,
         )
