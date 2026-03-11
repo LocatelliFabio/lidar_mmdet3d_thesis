@@ -1,6 +1,6 @@
 # main.py
 
-from time import sleep
+from time import sleep, monotonic
 import numpy as np
 
 from config import (
@@ -13,7 +13,7 @@ from config import (
     VIEWER_CFG,
     LOOP_SLEEP_SEC,
     ENABLE_DEBUG_LOGS,
-    SPEED_CFG,
+    TRACKER_CFG,
 )
 
 from thread_safe_buffer import LatestValueBuffer
@@ -22,7 +22,7 @@ from preprocessing.pre_process import preprocess_raw_for_second
 from detector import SecondDetector
 from live_viewer import LiveViewer3D
 from rs_to_model_coords import rs_to_model_coords
-from cyclist_speed import RealTimeCyclistSpeedEstimator
+from cyclist_tracker import RealTimeCyclistTracker
 
 
 def log_cloud_stats(name: str, points: np.ndarray) -> None:
@@ -59,11 +59,14 @@ def main():
         point_size=VIEWER_CFG["point_size"],
     )
 
-    speed_estimator = RealTimeCyclistSpeedEstimator(**SPEED_CFG)
+    tracker = RealTimeCyclistTracker(**TRACKER_CFG)
 
     lidar.start()
 
     try:
+        last_status_print = 0.0
+        time_to_print = 0.2
+        
         while True:
             raw_points = frame_buffer.get_copy()
 
@@ -94,8 +97,7 @@ def main():
                 score_thr=SCORE_THR,
             )
 
-            speed_state = speed_estimator.update(
-                points_xyzi=processed_points,
+            track_state = tracker.update(
                 boxes=boxes,
                 scores=scores,
                 labels=labels,
@@ -103,24 +105,28 @@ def main():
 
             viewer.update(model_points, boxes, labels)
 
-            if speed_state.detected:
-                print(
-                    f"Cyclist | pts={speed_state.num_points:4d} "
-                    f"| score={speed_state.score:.2f} "
-                    f"| v={speed_state.instant_kmh:6.2f} km/h "
-                    f"| v_smooth={speed_state.smooth_kmh:6.2f} km/h "
-                    f"| v_max={speed_state.max_kmh:6.2f} km/h "
-                    f"| dist={speed_state.total_distance_m:7.2f} m",
-                    #end="\r",
-                )
-            else:
-                print(
-                    "Cyclist | no detection"
-                    f" | v_smooth={speed_state.smooth_kmh:6.2f} km/h"
-                    f" | v_max={speed_state.max_kmh:6.2f} km/h"
-                    f" | dist={speed_state.total_distance_m:7.2f} m",
-                    #end="\r",
-                )
+            now = monotonic()
+            if now - last_status_print >= time_to_print:
+                if track_state.detected:
+                    print(
+                        f"Cyclist "
+                        f"| score={track_state.score:.2f} "
+                        f"| v={track_state.instant_kmh:6.2f} km/h "
+                        f"| v_smooth={track_state.smooth_kmh:6.2f} km/h "
+                        f"| v_mean={track_state.mean_kmh:6.2f} km/h "
+                        f"| v_max={track_state.max_kmh:6.2f} km/h "
+                        f"| dist={track_state.total_distance_m:7.2f} m",
+                        # end="\r",
+                    )
+                else:
+                    print(
+                        f"Cyclist | no detection "
+                        f"| v_smooth={track_state.smooth_kmh:6.2f} km/h "
+                        f"| v_max={track_state.max_kmh:6.2f} km/h "
+                        f"| dist={track_state.total_distance_m:7.2f} m",
+                        # end="\r",
+                    )
+                last_status_print = now
 
             sleep(LOOP_SLEEP_SEC)
 

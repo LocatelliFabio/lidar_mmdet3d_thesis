@@ -36,11 +36,11 @@ VIEWER_CFG = {
 LOOP_SLEEP_SEC = 0.01
 ENABLE_DEBUG_LOGS = False
 
-SPEED_CFG = {
+TRACKER_CFG = {
     "score_thr": 0.40,
-    "pad": (0.25, 0.25, 0.50),
     "smoothing_window": 5,
-    "use_xy_only": True,
-    "min_points_in_box": 5,
     "max_reasonable_speed_kmh": 80.0,
+    "max_match_distance_m": 4.0,
+    "max_missed_frames": 5,
+    "prefer_high_score_when_unlocked": True,
 }
