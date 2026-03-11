@@ -11,6 +11,34 @@ import numpy as np
 CYCLIST_LABEL = 1
 
 
+def points_in_oriented_box(
+    points_xyz: np.ndarray,
+    box7: np.ndarray,
+    pad=(0.25, 0.25, 0.50),
+) -> np.ndarray:
+    cx, cy, cz, dx, dy, dz, yaw = box7.astype(np.float64)
+
+    center = np.array([cx, cy, cz], dtype=np.float64)
+    half = np.array([dx, dy, dz], dtype=np.float64) / 2.0
+    half += np.array(pad, dtype=np.float64)
+
+    c, s = np.cos(yaw), np.sin(yaw)
+    rot = np.array([
+        [c, -s, 0.0],
+        [s,  c, 0.0],
+        [0.0, 0.0, 1.0],
+    ], dtype=np.float64)
+
+    local_pts = (points_xyz - center) @ rot
+
+    mask = (
+        (np.abs(local_pts[:, 0]) <= half[0]) &
+        (np.abs(local_pts[:, 1]) <= half[1]) &
+        (np.abs(local_pts[:, 2]) <= half[2])
+    )
+    return mask
+
+
 def normalize_yaw_with_previous(box7: np.ndarray, prev_yaw_rad: float | None) -> np.ndarray:
     if box7 is None:
         return None
@@ -65,12 +93,16 @@ class RealTimeCyclistSpeedEstimator:
     def __init__(
         self,
         score_thr: float = 0.30,
+        pad=(0.25, 0.25, 0.50),
         smoothing_window: int = 5,
         use_xy_only: bool = True,
+        min_points_in_box: int = 5,
         max_reasonable_speed_kmh: float = 80.0,
     ):
         self.score_thr = score_thr
+        self.pad = pad
         self.use_xy_only = use_xy_only
+        self.min_points_in_box = min_points_in_box
         self.max_reasonable_speed_kmh = max_reasonable_speed_kmh
 
         self.prev_center = None
@@ -102,8 +134,26 @@ class RealTimeCyclistSpeedEstimator:
 
         return boxes[best_idx].copy(), float(scores[best_idx])
 
+    def _compute_center_from_box_points(
+        self,
+        points_xyzi: np.ndarray,
+        box7: np.ndarray,
+    ):
+        if points_xyzi is None or len(points_xyzi) == 0:
+            return None, 0
+
+        mask = points_in_oriented_box(points_xyzi[:, :3], box7, pad=self.pad)
+        inside = points_xyzi[mask]
+
+        if inside.shape[0] < self.min_points_in_box:
+            return None, inside.shape[0]
+
+        center = inside[:, :3].mean(axis=0).astype(np.float64)
+        return center, inside.shape[0]
+
     def update(
         self,
+        points_xyzi: np.ndarray,
         boxes: np.ndarray,
         scores: np.ndarray,
         labels: np.ndarray,
@@ -132,9 +182,10 @@ class RealTimeCyclistSpeedEstimator:
         box7 = fix_second_cyclist_box(best_box)
         box7 = normalize_yaw_with_previous(box7, self.prev_yaw)
 
-        # velocità calcolata solo dal centro della bounding box
-        center = box7[:3].astype(np.float64)
-        npts = 0
+        center, npts = self._compute_center_from_box_points(points_xyzi, box7)
+
+        if center is None:
+            center = box7[:3].astype(np.float64)
 
         instant_kmh = 0.0
 

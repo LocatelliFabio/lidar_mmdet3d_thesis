@@ -125,7 +125,6 @@ def main():
             t4 = perf_counter()
 
             speed_state = speed_estimator.update(
-                points_xyzi=processed_points,
                 boxes=boxes,
                 scores=scores,
                 labels=labels,
@@ -155,8 +154,7 @@ def main():
 
             if speed_state.detected:
                 print(
-                    f"Cyclist | pts={speed_state.num_points:4d} "
-                    f"| score={speed_state.score:.2f} "
+                    f"Cyclist | score={speed_state.score:.2f} "
                     f"| v={speed_state.instant_kmh:6.2f} km/h "
                     f"| v_smooth={speed_state.smooth_kmh:6.2f} km/h "
                     f"| v_max={speed_state.max_kmh:6.2f} km/h "

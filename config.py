@@ -32,7 +32,7 @@ VIEWER_CFG = {
     "width": 1280,
     "height": 720,
     "point_size": 1.5,
-    
+
     "camera_position": [0.0, 0.0, 2.0],
     "camera_lookat": [15.0, 0.0, 0.5],
 }
@@ -42,9 +42,7 @@ ENABLE_DEBUG_LOGS = False
 
 SPEED_CFG = {
     "score_thr": SCORE_THR,
-    "pad": (0.25, 0.25, 0.50),
     "smoothing_window": 5,
     "use_xy_only": True,
-    "min_points_in_box": 5,
     "max_reasonable_speed_kmh": 80.0,
 }
