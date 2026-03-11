@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from collections import deque
 from dataclasses import dataclass
-from time import monotonic
 
 import numpy as np
 
@@ -17,11 +16,6 @@ def points_in_oriented_box(
     box7: np.ndarray,
     pad=(0.25, 0.25, 0.50),
 ) -> np.ndarray:
-    """
-    points_xyz: (N,3)
-    box7: [cx, cy, cz, dx, dy, dz, yaw]
-    return: mask boolean (N,)
-    """
     cx, cy, cz, dx, dy, dz, yaw = box7.astype(np.float64)
 
     center = np.array([cx, cy, cz], dtype=np.float64)
@@ -46,9 +40,6 @@ def points_in_oriented_box(
 
 
 def normalize_yaw_with_previous(box7: np.ndarray, prev_yaw_rad: float | None) -> np.ndarray:
-    """
-    Evita flip di 180° tra frame consecutivi.
-    """
     if box7 is None:
         return None
 
@@ -72,13 +63,8 @@ def fix_second_cyclist_box(
     box7: np.ndarray,
     sensor_height_fix: float = 1.7 / 2.0,
 ) -> np.ndarray:
-    """
-    Adatta la bbox Cyclist prodotta da SECOND alla convenzione usata
-    per estrarre punti dal cloud.
-    """
     b = box7.copy()
 
-    # come nel tuo codice offline
     b[2] = b[2] + sensor_height_fix
 
     dx, dy = b[3], b[4]
@@ -106,7 +92,7 @@ class CyclistSpeedState:
 class RealTimeCyclistSpeedEstimator:
     def __init__(
         self,
-        score_thr: float = 0.40,
+        score_thr: float = 0.30,
         pad=(0.25, 0.25, 0.50),
         smoothing_window: int = 5,
         use_xy_only: bool = True,
@@ -173,14 +159,17 @@ class RealTimeCyclistSpeedEstimator:
         labels: np.ndarray,
         timestamp: float | None = None,
     ) -> CyclistSpeedState:
-        now = monotonic() if timestamp is None else float(timestamp)
+        if timestamp is None:
+            raise ValueError("RealTimeCyclistSpeedEstimator.update richiede il timestamp reale del frame")
+
+        now = float(timestamp)
 
         best_box, best_score = self._select_best_cyclist(boxes, scores, labels)
         if best_box is None:
             return CyclistSpeedState(
                 detected=False,
                 instant_kmh=0.0,
-                smooth_kmh=(self.speed_hist[-1] if len(self.speed_hist) > 0 else 0.0),
+                smooth_kmh=(float(np.mean(self.speed_hist)) if len(self.speed_hist) > 0 else 0.0),
                 mean_kmh=(self.sum_kmh / self.num_speed_samples if self.num_speed_samples > 0 else 0.0),
                 max_kmh=self.max_kmh,
                 total_distance_m=self.total_distance_m,
@@ -196,7 +185,6 @@ class RealTimeCyclistSpeedEstimator:
         center, npts = self._compute_center_from_box_points(points_xyzi, box7)
 
         if center is None:
-            # fallback sul centro bbox, se dentro la box non ci sono abbastanza punti
             center = box7[:3].astype(np.float64)
 
         instant_kmh = 0.0
@@ -220,16 +208,12 @@ class RealTimeCyclistSpeedEstimator:
                     self.num_speed_samples += 1
                     self.speed_hist.append(instant_kmh)
 
-        if len(self.speed_hist) > 0:
-            smooth_kmh = float(np.mean(self.speed_hist))
-        else:
-            smooth_kmh = 0.0
+        smooth_kmh = float(np.mean(self.speed_hist)) if len(self.speed_hist) > 0 else 0.0
+        mean_kmh = self.sum_kmh / self.num_speed_samples if self.num_speed_samples > 0 else 0.0
 
         self.prev_center = center
         self.prev_time = now
         self.prev_yaw = box7[6]
-
-        mean_kmh = self.sum_kmh / self.num_speed_samples if self.num_speed_samples > 0 else 0.0
 
         return CyclistSpeedState(
             detected=True,

@@ -5,6 +5,7 @@ MODEL_CHECKPOINT = "mmdet3d/checkpoints/hv_second_secfpn_fp16_6x8_80e_kitti-3d-3
 MODEL_DEVICE = "cuda:0"
 
 CLASS_NAMES = ["Pedestrian", "Cyclist", "Car"]
+
 SCORE_THR = 0.30
 
 PC_RANGE = (0, -40, -3, 70.4, 40, 1)
@@ -30,14 +31,14 @@ VIEWER_CFG = {
     "window_name": "RS128 Live Detection",
     "width": 1280,
     "height": 720,
-    "point_size": 3.0,
+    "point_size": 1.5,
 }
 
-LOOP_SLEEP_SEC = 0.01
+LOOP_SLEEP_SEC = 0.002
 ENABLE_DEBUG_LOGS = False
 
 SPEED_CFG = {
-    "score_thr": 0.40,
+    "score_thr": SCORE_THR,
     "pad": (0.25, 0.25, 0.50),
     "smoothing_window": 5,
     "use_xy_only": True,

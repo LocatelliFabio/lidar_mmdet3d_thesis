@@ -1,6 +1,7 @@
 # rs_lidar_stream.py
 
 import numpy as np
+from time import monotonic
 
 from rs_driver import (
     RSDriverParam,
@@ -22,6 +23,8 @@ class RSLidarStream:
         return PointCloud()
 
     def _return_point_cloud_callback(self, point_cloud: PointCloud):
+        frame_ts = monotonic()
+
         arr = point_cloud.numpy()
         if arr is None:
             return
@@ -43,7 +46,7 @@ class RSLidarStream:
         if points.shape[0] == 0:
             return
 
-        self.frame_buffer.set(points)
+        self.frame_buffer.set(points, timestamp=frame_ts)
 
     def _exception_callback(self, error: Error):
         msg = str(error)
