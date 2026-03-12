@@ -5,10 +5,13 @@ import numpy as np
 
 def remove_ground_grid(
     points: np.ndarray,
-    cell=0.5,
-    thresh=0.05,
+    cell: float = 0.5,
+    thresh: float = 0.05,
     pc_range=(0, -40, -3, 70.4, 40, 1),
 ) -> np.ndarray:
+    if points is None or points.shape[0] == 0:
+        return np.empty((0, 4), dtype=np.float32)
+
     xmin, ymin, *_ = pc_range
     x, y, z = points[:, 0], points[:, 1], points[:, 2]
 
@@ -38,9 +41,12 @@ def remove_ground_grid(
 
 def grid_average_downsample_xyzi(
     points: np.ndarray,
-    voxel=0.08,
+    voxel: float = 0.08,
     pc_range=(0, -40, -3, 70.4, 40, 1),
 ) -> np.ndarray:
+    if points is None or points.shape[0] == 0:
+        return np.empty((0, 4), dtype=np.float32)
+
     xmin, ymin, zmin, *_ = pc_range
 
     q = np.floor(
@@ -48,7 +54,11 @@ def grid_average_downsample_xyzi(
     ).astype(np.int32)
 
     qx, qy, qz = q[:, 0], q[:, 1], q[:, 2]
-    key = (qx.astype(np.int64) << 42) | (qy.astype(np.int64) << 21) | qz.astype(np.int64)
+    key = (
+        (qx.astype(np.int64) << 42)
+        | (qy.astype(np.int64) << 21)
+        | qz.astype(np.int64)
+    )
 
     _, inv, counts = np.unique(key, return_inverse=True, return_counts=True)
     n = counts.size
@@ -63,10 +73,13 @@ def grid_average_downsample_xyzi(
 
 def voxel_occupancy_denoise(
     points: np.ndarray,
-    voxel=0.25,
-    min_pts=2,
+    voxel: float = 0.25,
+    min_pts: int = 2,
     pc_range=(0, -40, -3, 70.4, 40, 1),
 ) -> np.ndarray:
+    if points is None or points.shape[0] == 0:
+        return np.empty((0, 4), dtype=np.float32)
+
     xmin, ymin, zmin, *_ = pc_range
 
     q = np.floor(
@@ -74,7 +87,11 @@ def voxel_occupancy_denoise(
     ).astype(np.int32)
 
     qx, qy, qz = q[:, 0], q[:, 1], q[:, 2]
-    key = (qx.astype(np.int64) << 42) | (qy.astype(np.int64) << 21) | qz.astype(np.int64)
+    key = (
+        (qx.astype(np.int64) << 42)
+        | (qy.astype(np.int64) << 21)
+        | qz.astype(np.int64)
+    )
 
     _, inv, counts = np.unique(key, return_inverse=True, return_counts=True)
     keep = counts[inv] >= min_pts

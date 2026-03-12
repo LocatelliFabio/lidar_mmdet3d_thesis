@@ -68,7 +68,7 @@ def main():
 
     lidar.start()
 
-    i = 0
+    # i = 0
 
     try:
         while True:
@@ -81,11 +81,11 @@ def main():
             
             last_seq = seq
 
-            if i < 1:
-                i = i + 1
-                continue
-            else:
-                i = 0
+            # if i < 1:
+            #     i = i + 1
+            #     continue
+            # else:
+            #     i = 0
 
 
             t0 = perf_counter()

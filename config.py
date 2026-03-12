@@ -23,8 +23,8 @@ PREPROCESS_CFG = {
 LIDAR_CFG = {
     "msop_port": 6699,
     "difop_port": 7788,
-    "host_address": "192.168.1.102",
-    #"host_address": "127.0.0.1",
+    #"host_address": "192.168.1.102",
+    "host_address": "127.0.0.1",
     "group_address": "0.0.0.0",
 }
 
