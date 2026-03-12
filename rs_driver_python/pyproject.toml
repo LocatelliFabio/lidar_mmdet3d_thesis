@@ -1,0 +1,17 @@
+[build-system]
+requires = ["scikit-build-core>=0.10", "pybind11"]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "rs_driver_python"
+version = "0.0.1"
+description="Python wrapper for the Robosense rs_driver LiDAR kernel using pybind11"
+readme = "README.md"
+authors = [
+    { name = "Christopher Niemann", email = "christopher.niemann@uni-bielefeld.de" },
+]
+requires-python = ">=3.8"
+
+[tool.scikit-build]
+wheel.expand-macos-universal-tags = true
+minimum-version = "build-system.requires"
