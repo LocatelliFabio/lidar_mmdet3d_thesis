@@ -90,8 +90,9 @@ def main():
 
             t0 = perf_counter()
 
-            model_points = rs_to_model_coords(raw_points)
-            t1 = perf_counter()
+            model_points = raw_points
+            #model_points = rs_to_model_coords(raw_points)
+            #t1 = perf_counter()
 
             processed_points = preprocess_raw_for_second(model_points, **PREPROCESS_CFG)
             t2 = perf_counter()
@@ -113,8 +114,8 @@ def main():
                 print(
                     f"Frame seq={seq:06d} | pts_raw={raw_points.shape[0]:6d} "
                     f"| pts_proc=0 | dt_frame={frame_period_ms:7.2f} ms "
-                    f"| coord={(t1 - t0) * 1000.0:7.2f} ms "
-                    f"| prep={(t2 - t1) * 1000.0:7.2f} ms "
+                    # f"| coord={(t1 - t0) * 1000.0:7.2f} ms "
+                    f"| prep={(t2 - t0) * 1000.0:7.2f} ms "
                     f"| infer={0.0:7.2f} ms "
                     f"| speed={0.0:7.2f} ms "
                     f"| view={(t3 - t2) * 1000.0:7.2f} ms "
@@ -141,7 +142,7 @@ def main():
             )
             t5 = perf_counter()
 
-            viewer.update(model_points, boxes, labels)
+            viewer.update(processed_points, boxes, labels)
             t6 = perf_counter()
 
             frame_period_ms = 0.0 if last_frame_ts is None else (frame_ts - last_frame_ts) * 1000.0
@@ -152,8 +153,8 @@ def main():
                 f"| pts_proc={processed_points.shape[0]:6d} "
                 f"| det={len(boxes):2d} "
                 f"| dt_frame={frame_period_ms:7.2f} ms "
-                f"| coord={(t1 - t0) * 1000.0:7.2f} ms "
-                f"| prep={(t2 - t1) * 1000.0:7.2f} ms "
+                # f"| coord={(t1 - t0) * 1000.0:7.2f} ms "
+                f"| prep={(t2 - t0) * 1000.0:7.2f} ms "
                 f"| infer={(t3 - t2) * 1000.0:7.2f} ms "
                 f"| post={(t4 - t3) * 1000.0:7.2f} ms "
                 f"| speed={(t5 - t4) * 1000.0:7.2f} ms "

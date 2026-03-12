@@ -1,0 +1,234 @@
+Loads checkpoint by local backend from path: mmdet3d/checkpoints/hv_second_secfpn_fp16_6x8_80e_kitti-3d-3class_20200925_110059-05f67bdf.pth
+[1;33m[Open3D WARNING] The number of points is 0 when creating axis-aligned bounding box.[0;m
+Frame seq=000001 | pts_raw=269118 | pts_proc=  3732 | det= 0 | dt_frame=   0.00 ms | prep=  65.45 ms | infer=  71.39 ms | post=   0.19 ms | speed=   0.03 ms | view=  41.60 ms | total= 178.66 ms
+Cyclist | no detection | v_smooth=  0.00 km/h | v_max=  0.00 km/h | dist=   0.00 m
+Frame seq=000004 | pts_raw=320628 | pts_proc=  5200 | det= 1 | dt_frame= 268.42 ms | prep=  73.89 ms | infer=  58.39 ms | post=   0.15 ms | speed=   0.06 ms | view=   5.67 ms | total= 138.17 ms
+Cyclist | no detection | v_smooth=  0.00 km/h | v_max=  0.00 km/h | dist=   0.00 m
+Frame seq=000007 | pts_raw=320512 | pts_proc=  5209 | det= 1 | dt_frame= 313.73 ms | prep=  76.81 ms | infer=  55.41 ms | post=   0.14 ms | speed=   0.05 ms | view=   5.83 ms | total= 138.25 ms
+Cyclist | no detection | v_smooth=  0.00 km/h | v_max=  0.00 km/h | dist=   0.00 m
+Frame seq=000010 | pts_raw=320408 | pts_proc=  5190 | det= 1 | dt_frame= 282.51 ms | prep=  71.44 ms | infer=  56.06 ms | post=   0.13 ms | speed=   0.05 ms | view=   6.05 ms | total= 133.73 ms
+Cyclist | no detection | v_smooth=  0.00 km/h | v_max=  0.00 km/h | dist=   0.00 m
+Frame seq=000013 | pts_raw=320391 | pts_proc=  5211 | det= 1 | dt_frame= 300.89 ms | prep=  75.63 ms | infer=  65.80 ms | post=   0.18 ms | speed=   0.06 ms | view=   5.76 ms | total= 147.43 ms
+Cyclist | no detection | v_smooth=  0.00 km/h | v_max=  0.00 km/h | dist=   0.00 m
+Frame seq=000016 | pts_raw=320511 | pts_proc=  5212 | det= 1 | dt_frame= 309.01 ms | prep=  88.58 ms | infer=  50.97 ms | post=   0.14 ms | speed=   0.05 ms | view=   5.34 ms | total= 145.09 ms
+Cyclist | no detection | v_smooth=  0.00 km/h | v_max=  0.00 km/h | dist=   0.00 m
+Frame seq=000019 | pts_raw=320367 | pts_proc=  5157 | det= 1 | dt_frame= 309.66 ms | prep=  78.15 ms | infer=  61.20 ms | post=   0.17 ms | speed=   0.06 ms | view=   5.60 ms | total= 145.19 ms
+Cyclist | no detection | v_smooth=  0.00 km/h | v_max=  0.00 km/h | dist=   0.00 m
+Frame seq=000022 | pts_raw=319783 | pts_proc=  5158 | det= 1 | dt_frame= 282.86 ms | prep=  76.82 ms | infer=  64.92 ms | post=   0.17 ms | speed=   0.06 ms | view=   5.49 ms | total= 147.46 ms
+Cyclist | no detection | v_smooth=  0.00 km/h | v_max=  0.00 km/h | dist=   0.00 m
+Frame seq=000025 | pts_raw=320102 | pts_proc=  5200 | det= 1 | dt_frame= 309.70 ms | prep=  79.58 ms | infer=  67.67 ms | post=   0.17 ms | speed=   0.07 ms | view=   5.82 ms | total= 153.32 ms
+Cyclist | no detection | v_smooth=  0.00 km/h | v_max=  0.00 km/h | dist=   0.00 m
+Frame seq=000028 | pts_raw=319152 | pts_proc=  5174 | det= 1 | dt_frame= 291.37 ms | prep=  70.85 ms | infer=  51.76 ms | post=   0.13 ms | speed=   0.05 ms | view=   5.36 ms | total= 128.15 ms
+Cyclist | no detection | v_smooth=  0.00 km/h | v_max=  0.00 km/h | dist=   0.00 m
+Frame seq=000030 | pts_raw=315240 | pts_proc=  5201 | det= 1 | dt_frame= 192.52 ms | prep=  73.43 ms | infer=  52.02 ms | post=   0.13 ms | speed=   0.05 ms | view=   6.33 ms | total= 131.96 ms
+Cyclist | no detection | v_smooth=  0.00 km/h | v_max=  0.00 km/h | dist=   0.00 m
+Frame seq=000032 | pts_raw=314604 | pts_proc=  5155 | det= 1 | dt_frame= 221.40 ms | prep=  58.58 ms | infer=  70.90 ms | post=   0.16 ms | speed=   0.05 ms | view=   5.75 ms | total= 135.44 ms
+Cyclist | no detection | v_smooth=  0.00 km/h | v_max=  0.00 km/h | dist=   0.00 m
+Frame seq=000035 | pts_raw=315744 | pts_proc=  5184 | det= 1 | dt_frame= 279.53 ms | prep=  69.73 ms | infer=  60.19 ms | post=   0.16 ms | speed=   0.06 ms | view=   5.64 ms | total= 135.77 ms
+Cyclist | no detection | v_smooth=  0.00 km/h | v_max=  0.00 km/h | dist=   0.00 m
+Frame seq=000037 | pts_raw=314916 | pts_proc=  5202 | det= 1 | dt_frame= 199.17 ms | prep=  50.38 ms | infer=  58.67 ms | post=   0.17 ms | speed=   0.05 ms | view=   5.48 ms | total= 114.75 ms
+Cyclist | no detection | v_smooth=  0.00 km/h | v_max=  0.00 km/h | dist=   0.00 m
+Frame seq=000039 | pts_raw=312189 | pts_proc=  5188 | det= 1 | dt_frame= 203.14 ms | prep=  76.09 ms | infer=  65.16 ms | post=   0.16 ms | speed=   0.06 ms | view=   6.09 ms | total= 147.57 ms
+Cyclist | no detection | v_smooth=  0.00 km/h | v_max=  0.00 km/h | dist=   0.00 m
+Frame seq=000042 | pts_raw=315399 | pts_proc=  5181 | det= 1 | dt_frame= 313.80 ms | prep=  77.67 ms | infer=  65.00 ms | post=   0.16 ms | speed=   0.05 ms | view=  11.24 ms | total= 154.11 ms
+Cyclist | no detection | v_smooth=  0.00 km/h | v_max=  0.00 km/h | dist=   0.00 m
+Frame seq=000045 | pts_raw=310875 | pts_proc=  5077 | det= 1 | dt_frame= 292.42 ms | prep=  73.48 ms | infer=  63.97 ms | post=   0.15 ms | speed=   0.05 ms | view=   5.77 ms | total= 143.43 ms
+Cyclist | no detection | v_smooth=  0.00 km/h | v_max=  0.00 km/h | dist=   0.00 m
+Frame seq=000048 | pts_raw=314299 | pts_proc=  4674 | det= 1 | dt_frame= 303.71 ms | prep=  70.65 ms | infer=  54.46 ms | post=   0.13 ms | speed=   0.05 ms | view=   5.31 ms | total= 130.60 ms
+Cyclist | no detection | v_smooth=  0.00 km/h | v_max=  0.00 km/h | dist=   0.00 m
+Frame seq=000050 | pts_raw=311843 | pts_proc=  4628 | det= 1 | dt_frame= 188.46 ms | prep=  48.30 ms | infer=  59.26 ms | post=   0.15 ms | speed=   0.06 ms | view=   5.70 ms | total= 113.47 ms
+Cyclist | no detection | v_smooth=  0.00 km/h | v_max=  0.00 km/h | dist=   0.00 m
+Frame seq=000052 | pts_raw=312199 | pts_proc=  4835 | det= 1 | dt_frame= 212.13 ms | prep=  74.76 ms | infer=  65.62 ms | post=   0.18 ms | speed=   0.06 ms | view=   5.56 ms | total= 146.18 ms
+Cyclist | no detection | v_smooth=  0.00 km/h | v_max=  0.00 km/h | dist=   0.00 m
+Frame seq=000055 | pts_raw=313505 | pts_proc=  4891 | det= 1 | dt_frame= 308.90 ms | prep=  65.66 ms | infer=  53.08 ms | post=   0.13 ms | speed=   0.05 ms | view=   6.19 ms | total= 125.11 ms
+Cyclist | no detection | v_smooth=  0.00 km/h | v_max=  0.00 km/h | dist=   0.00 m
+Frame seq=000057 | pts_raw=313856 | pts_proc=  5016 | det= 0 | dt_frame= 177.60 ms | prep=  44.83 ms | infer=  49.46 ms | post=   0.14 ms | speed=   0.02 ms | view=   4.43 ms | total=  98.88 ms
+Cyclist | no detection | v_smooth=  0.00 km/h | v_max=  0.00 km/h | dist=   0.00 m
+Frame seq=000059 | pts_raw=315291 | pts_proc=  5035 | det= 0 | dt_frame= 220.73 ms | prep=  76.55 ms | infer=  53.61 ms | post=   0.14 ms | speed=   0.01 ms | view=   4.28 ms | total= 134.59 ms
+Cyclist | no detection | v_smooth=  0.00 km/h | v_max=  0.00 km/h | dist=   0.00 m
+Frame seq=000062 | pts_raw=315398 | pts_proc=  5144 | det= 0 | dt_frame= 297.03 ms | prep=  86.35 ms | infer=  50.45 ms | post=   0.13 ms | speed=   0.01 ms | view=   4.15 ms | total= 141.09 ms
+Cyclist | no detection | v_smooth=  0.00 km/h | v_max=  0.00 km/h | dist=   0.00 m
+Frame seq=000065 | pts_raw=315802 | pts_proc=  5100 | det= 0 | dt_frame= 303.92 ms | prep=  77.62 ms | infer=  70.69 ms | post=   0.19 ms | speed=   0.03 ms | view=   4.37 ms | total= 152.90 ms
+Cyclist | no detection | v_smooth=  0.00 km/h | v_max=  0.00 km/h | dist=   0.00 m
+Frame seq=000068 | pts_raw=315119 | pts_proc=  5098 | det= 1 | dt_frame= 278.11 ms | prep=  72.72 ms | infer=  63.55 ms | post=   0.16 ms | speed=   0.16 ms | view=   6.20 ms | total= 142.79 ms
+Cyclist | score=0.31 | v=  0.00 km/h | v_smooth=  0.00 km/h | v_max=  0.00 km/h | dist=   0.00 m
+Frame seq=000071 | pts_raw=315959 | pts_proc=  5116 | det= 1 | dt_frame= 299.97 ms | prep=  76.35 ms | infer=  62.63 ms | post=   0.16 ms | speed=   0.06 ms | view=   5.62 ms | total= 144.82 ms
+Cyclist | no detection | v_smooth=  0.00 km/h | v_max=  0.00 km/h | dist=   0.00 m
+Frame seq=000074 | pts_raw=315945 | pts_proc=  5135 | det= 0 | dt_frame= 305.64 ms | prep=  75.40 ms | infer=  54.10 ms | post=   0.15 ms | speed=   0.02 ms | view=   4.49 ms | total= 134.16 ms
+Cyclist | no detection | v_smooth=  0.00 km/h | v_max=  0.00 km/h | dist=   0.00 m
+Frame seq=000076 | pts_raw=315498 | pts_proc=  5105 | det= 0 | dt_frame= 195.71 ms | prep=  57.81 ms | infer=  52.60 ms | post=   0.13 ms | speed=   0.01 ms | view=   4.37 ms | total= 114.93 ms
+Cyclist | no detection | v_smooth=  0.00 km/h | v_max=  0.00 km/h | dist=   0.00 m
+Frame seq=000078 | pts_raw=314961 | pts_proc=  5073 | det= 1 | dt_frame= 219.65 ms | prep=  74.39 ms | infer=  58.14 ms | post=   0.15 ms | speed=   0.35 ms | view=   5.75 ms | total= 138.78 ms
+Cyclist | score=0.30 | v=  0.61 km/h | v_smooth=  0.61 km/h | v_max=  0.61 km/h | dist=   0.17 m
+Frame seq=000081 | pts_raw=314656 | pts_proc=  5085 | det= 0 | dt_frame= 302.09 ms | prep=  75.87 ms | infer=  56.39 ms | post=   0.14 ms | speed=   0.07 ms | view=   4.83 ms | total= 137.31 ms
+Cyclist | no detection | v_smooth=  0.61 km/h | v_max=  0.61 km/h | dist=   0.17 m
+Frame seq=000084 | pts_raw=315251 | pts_proc=  5025 | det= 0 | dt_frame= 276.86 ms | prep=  67.19 ms | infer=  50.28 ms | post=   0.09 ms | speed=   0.07 ms | view=  29.59 ms | total= 147.23 ms
+Cyclist | no detection | v_smooth=  0.61 km/h | v_max=  0.61 km/h | dist=   0.17 m
+Frame seq=000087 | pts_raw=314726 | pts_proc=  5047 | det= 0 | dt_frame= 313.23 ms | prep=  75.84 ms | infer=  58.13 ms | post=   0.09 ms | speed=   0.11 ms | view=   4.61 ms | total= 138.78 ms
+Cyclist | no detection | v_smooth=  0.61 km/h | v_max=  0.61 km/h | dist=   0.17 m
+Frame seq=000090 | pts_raw=314341 | pts_proc=  5033 | det= 0 | dt_frame= 291.00 ms | prep=  75.42 ms | infer=  56.70 ms | post=   0.08 ms | speed=   0.08 ms | view=   4.20 ms | total= 136.48 ms
+Cyclist | no detection | v_smooth=  0.61 km/h | v_max=  0.61 km/h | dist=   0.17 m
+Frame seq=000093 | pts_raw=313889 | pts_proc=  5046 | det= 0 | dt_frame= 303.99 ms | prep=  72.07 ms | infer=  57.66 ms | post=   0.16 ms | speed=   0.07 ms | view=   4.51 ms | total= 134.46 ms
+Cyclist | no detection | v_smooth=  0.61 km/h | v_max=  0.61 km/h | dist=   0.17 m
+Frame seq=000095 | pts_raw=313859 | pts_proc=  4978 | det= 0 | dt_frame= 191.76 ms | prep=  54.04 ms | infer=  57.43 ms | post=   0.15 ms | speed=   0.07 ms | view=   4.29 ms | total= 115.98 ms
+Cyclist | no detection | v_smooth=  0.61 km/h | v_max=  0.61 km/h | dist=   0.17 m
+Frame seq=000097 | pts_raw=314402 | pts_proc=  5030 | det= 0 | dt_frame= 201.26 ms | prep=  62.09 ms | infer=  53.92 ms | post=   0.11 ms | speed=   0.06 ms | view=   4.26 ms | total= 120.44 ms
+Cyclist | no detection | v_smooth=  0.61 km/h | v_max=  0.61 km/h | dist=   0.17 m
+Frame seq=000099 | pts_raw=313969 | pts_proc=  5007 | det= 0 | dt_frame= 198.92 ms | prep=  45.21 ms | infer=  49.58 ms | post=   0.42 ms | speed=   0.15 ms | view=   4.65 ms | total= 100.01 ms
+Cyclist | no detection | v_smooth=  0.61 km/h | v_max=  0.61 km/h | dist=   0.17 m
+Frame seq=000101 | pts_raw=314268 | pts_proc=  5024 | det= 0 | dt_frame= 216.51 ms | prep=  74.02 ms | infer=  48.57 ms | post=   0.11 ms | speed=   0.07 ms | view=   3.99 ms | total= 126.77 ms
+Cyclist | no detection | v_smooth=  0.61 km/h | v_max=  0.61 km/h | dist=   0.17 m
+Frame seq=000103 | pts_raw=314429 | pts_proc=  5022 | det= 0 | dt_frame= 183.53 ms | prep=  71.16 ms | infer=  54.22 ms | post=   0.12 ms | speed=   0.08 ms | view=   4.07 ms | total= 129.65 ms
+Cyclist | no detection | v_smooth=  0.61 km/h | v_max=  0.61 km/h | dist=   0.17 m
+Frame seq=000105 | pts_raw=314564 | pts_proc=  5087 | det= 0 | dt_frame= 200.29 ms | prep=  48.57 ms | infer=  50.32 ms | post=   0.12 ms | speed=   0.07 ms | view=   4.79 ms | total= 103.87 ms
+Cyclist | no detection | v_smooth=  0.61 km/h | v_max=  0.61 km/h | dist=   0.17 m
+Frame seq=000107 | pts_raw=314560 | pts_proc=  5021 | det= 0 | dt_frame= 218.99 ms | prep=  70.68 ms | infer=  63.99 ms | post=   0.16 ms | speed=   0.08 ms | view=   4.21 ms | total= 139.12 ms
+Cyclist | no detection | v_smooth=  0.61 km/h | v_max=  0.61 km/h | dist=   0.17 m
+Frame seq=000110 | pts_raw=314855 | pts_proc=  5058 | det= 0 | dt_frame= 297.63 ms | prep=  70.24 ms | infer=  65.37 ms | post=   0.16 ms | speed=   0.08 ms | view=   4.47 ms | total= 140.31 ms
+Cyclist | no detection | v_smooth=  0.61 km/h | v_max=  0.61 km/h | dist=   0.17 m
+Frame seq=000113 | pts_raw=315042 | pts_proc=  4999 | det= 0 | dt_frame= 302.73 ms | prep=  74.61 ms | infer=  58.48 ms | post=   0.14 ms | speed=   0.08 ms | view=   5.28 ms | total= 138.59 ms
+Cyclist | no detection | v_smooth=  0.61 km/h | v_max=  0.61 km/h | dist=   0.17 m
+Frame seq=000116 | pts_raw=315443 | pts_proc=  5044 | det= 0 | dt_frame= 298.49 ms | prep=  78.85 ms | infer=  57.40 ms | post=   0.15 ms | speed=   0.08 ms | view=   4.88 ms | total= 141.36 ms
+Cyclist | no detection | v_smooth=  0.61 km/h | v_max=  0.61 km/h | dist=   0.17 m
+Frame seq=000119 | pts_raw=315174 | pts_proc=  5052 | det= 0 | dt_frame= 300.48 ms | prep=  76.37 ms | infer=  57.11 ms | post=   0.14 ms | speed=   0.08 ms | view=   4.46 ms | total= 138.15 ms
+Cyclist | no detection | v_smooth=  0.61 km/h | v_max=  0.61 km/h | dist=   0.17 m
+Frame seq=000122 | pts_raw=315336 | pts_proc=  5023 | det= 1 | dt_frame= 289.58 ms | prep=  76.09 ms | infer=  72.91 ms | post=   0.16 ms | speed=   0.15 ms | view=   5.37 ms | total= 154.68 ms
+Cyclist | no detection | v_smooth=  0.61 km/h | v_max=  0.61 km/h | dist=   0.17 m
+Frame seq=000125 | pts_raw=315229 | pts_proc=  5034 | det= 0 | dt_frame= 291.65 ms | prep=  81.87 ms | infer=  60.68 ms | post=   0.15 ms | speed=   0.08 ms | view=   5.11 ms | total= 147.90 ms
+Cyclist | no detection | v_smooth=  0.61 km/h | v_max=  0.61 km/h | dist=   0.17 m
+Frame seq=000128 | pts_raw=315085 | pts_proc=  4997 | det= 0 | dt_frame= 315.38 ms | prep=  73.72 ms | infer=  53.14 ms | post=   0.14 ms | speed=   0.08 ms | view=   4.10 ms | total= 131.18 ms
+Cyclist | no detection | v_smooth=  0.61 km/h | v_max=  0.61 km/h | dist=   0.17 m
+Frame seq=000131 | pts_raw=314766 | pts_proc=  5014 | det= 0 | dt_frame= 304.35 ms | prep=  77.52 ms | infer=  57.41 ms | post=   0.16 ms | speed=   0.09 ms | view=   4.83 ms | total= 140.01 ms
+Cyclist | no detection | v_smooth=  0.61 km/h | v_max=  0.61 km/h | dist=   0.17 m
+Frame seq=000134 | pts_raw=314382 | pts_proc=  4962 | det= 0 | dt_frame= 303.07 ms | prep=  76.72 ms | infer=  61.96 ms | post=   0.14 ms | speed=   0.08 ms | view=   4.87 ms | total= 143.79 ms
+Cyclist | no detection | v_smooth=  0.61 km/h | v_max=  0.61 km/h | dist=   0.17 m
+Frame seq=000137 | pts_raw=314567 | pts_proc=  4937 | det= 1 | dt_frame= 279.19 ms | prep=  74.49 ms | infer=  56.38 ms | post=   0.14 ms | speed=   0.64 ms | view=   6.40 ms | total= 138.05 ms
+Cyclist | score=0.42 | v=  0.37 km/h | v_smooth=  0.49 km/h | v_max=  0.61 km/h | dist=   0.78 m
+Frame seq=000140 | pts_raw=313659 | pts_proc=  4880 | det= 0 | dt_frame= 302.85 ms | prep=  74.86 ms | infer=  54.32 ms | post=   0.13 ms | speed=   0.09 ms | view=   5.12 ms | total= 134.52 ms
+Cyclist | no detection | v_smooth=  0.49 km/h | v_max=  0.61 km/h | dist=   0.78 m
+Frame seq=000143 | pts_raw=314251 | pts_proc=  4924 | det= 1 | dt_frame= 317.26 ms | prep=  82.10 ms | infer=  59.50 ms | post=   0.14 ms | speed=   0.23 ms | view=   5.59 ms | total= 147.55 ms
+Cyclist | score=0.56 | v=  1.60 km/h | v_smooth=  0.86 km/h | v_max=  1.60 km/h | dist=   1.06 m
+Frame seq=000146 | pts_raw=313678 | pts_proc=  4982 | det= 1 | dt_frame= 283.58 ms | prep=  73.10 ms | infer=  57.00 ms | post=   0.14 ms | speed=   0.22 ms | view=   5.55 ms | total= 136.02 ms
+Cyclist | score=0.44 | v=  0.67 km/h | v_smooth=  0.81 km/h | v_max=  1.60 km/h | dist=   1.11 m
+Frame seq=000149 | pts_raw=313029 | pts_proc=  5040 | det= 0 | dt_frame= 310.54 ms | prep=  77.33 ms | infer=  56.53 ms | post=   0.14 ms | speed=   0.08 ms | view=   5.15 ms | total= 139.23 ms
+Cyclist | no detection | v_smooth=  0.81 km/h | v_max=  1.60 km/h | dist=   1.11 m
+Frame seq=000152 | pts_raw=312999 | pts_proc=  4958 | det= 0 | dt_frame= 283.98 ms | prep=  77.40 ms | infer=  54.04 ms | post=   0.21 ms | speed=   0.09 ms | view=   4.52 ms | total= 136.26 ms
+Cyclist | no detection | v_smooth=  0.81 km/h | v_max=  1.60 km/h | dist=   1.11 m
+Frame seq=000155 | pts_raw=313210 | pts_proc=  4910 | det= 0 | dt_frame= 299.91 ms | prep=  70.59 ms | infer=  60.56 ms | post=   0.16 ms | speed=   0.07 ms | view=   4.36 ms | total= 135.74 ms
+Cyclist | no detection | v_smooth=  0.81 km/h | v_max=  1.60 km/h | dist=   1.11 m
+Frame seq=000157 | pts_raw=314036 | pts_proc=  4959 | det= 1 | dt_frame= 200.15 ms | prep=  51.40 ms | infer=  53.29 ms | post=   0.15 ms | speed=   0.21 ms | view=   5.77 ms | total= 110.82 ms
+Cyclist | score=0.41 | v=  1.58 km/h | v_smooth=  0.97 km/h | v_max=  1.60 km/h | dist=   1.59 m
+Frame seq=000159 | pts_raw=314618 | pts_proc=  5012 | det= 2 | dt_frame= 223.28 ms | prep=  74.48 ms | infer=  60.10 ms | post=   0.15 ms | speed=   0.21 ms | view=   6.27 ms | total= 141.21 ms
+Cyclist | score=0.64 | v=  3.02 km/h | v_smooth=  1.45 km/h | v_max=  3.02 km/h | dist=   1.78 m
+Frame seq=000162 | pts_raw=316145 | pts_proc=  4921 | det= 2 | dt_frame= 279.28 ms | prep=  73.14 ms | infer=  58.97 ms | post=   0.15 ms | speed=   0.23 ms | view=   6.70 ms | total= 139.19 ms
+Cyclist | score=0.37 | v=  3.94 km/h | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000165 | pts_raw=319578 | pts_proc=  5117 | det= 1 | dt_frame= 315.67 ms | prep=  79.27 ms | infer=  62.17 ms | post=   0.18 ms | speed=   0.11 ms | view=  27.07 ms | total= 168.79 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000168 | pts_raw=320637 | pts_proc=  5150 | det= 1 | dt_frame= 299.79 ms | prep=  72.88 ms | infer=  63.35 ms | post=   0.16 ms | speed=   0.10 ms | view=   5.40 ms | total= 141.89 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000171 | pts_raw=320240 | pts_proc=  5223 | det= 1 | dt_frame= 293.91 ms | prep=  69.20 ms | infer=  65.67 ms | post=   0.16 ms | speed=   0.10 ms | view=   5.53 ms | total= 140.66 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000174 | pts_raw=319720 | pts_proc=  5272 | det= 1 | dt_frame= 304.08 ms | prep=  76.77 ms | infer=  57.36 ms | post=   0.16 ms | speed=   0.11 ms | view=   5.53 ms | total= 139.92 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000177 | pts_raw=317636 | pts_proc=  5249 | det= 1 | dt_frame= 304.43 ms | prep=  77.72 ms | infer=  59.99 ms | post=   0.19 ms | speed=   0.13 ms | view=   5.83 ms | total= 143.87 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000180 | pts_raw=316078 | pts_proc=  5158 | det= 1 | dt_frame= 287.08 ms | prep=  64.82 ms | infer=  61.84 ms | post=   0.15 ms | speed=   0.10 ms | view=   5.42 ms | total= 132.34 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000182 | pts_raw=315957 | pts_proc=  5158 | det= 1 | dt_frame= 193.29 ms | prep=  40.83 ms | infer=  51.07 ms | post=   0.14 ms | speed=   0.10 ms | view=   5.25 ms | total=  97.38 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000184 | pts_raw=316620 | pts_proc=  5141 | det= 1 | dt_frame= 199.60 ms | prep=  72.79 ms | infer=  63.51 ms | post=   0.16 ms | speed=   0.11 ms | view=   5.59 ms | total= 142.16 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000187 | pts_raw=314962 | pts_proc=  5118 | det= 1 | dt_frame= 305.66 ms | prep=  72.70 ms | infer=  56.60 ms | post=   0.13 ms | speed=   0.11 ms | view=   6.14 ms | total= 135.68 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000190 | pts_raw=315102 | pts_proc=  5137 | det= 1 | dt_frame= 297.67 ms | prep=  75.81 ms | infer=  57.55 ms | post=   0.14 ms | speed=   0.11 ms | view=   6.31 ms | total= 139.91 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000193 | pts_raw=312402 | pts_proc=  5076 | det= 1 | dt_frame= 303.00 ms | prep=  75.22 ms | infer=  58.66 ms | post=   0.15 ms | speed=   0.12 ms | view=   6.79 ms | total= 140.94 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000196 | pts_raw=311397 | pts_proc=  4881 | det= 1 | dt_frame= 300.12 ms | prep=  74.97 ms | infer=  58.31 ms | post=   0.16 ms | speed=   0.12 ms | view=   5.59 ms | total= 139.14 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000199 | pts_raw=309425 | pts_proc=  4838 | det= 1 | dt_frame= 311.22 ms | prep=  75.84 ms | infer=  59.92 ms | post=   0.14 ms | speed=   0.11 ms | view=   5.63 ms | total= 141.64 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000202 | pts_raw=308772 | pts_proc=  4780 | det= 1 | dt_frame= 281.88 ms | prep=  73.48 ms | infer=  59.20 ms | post=   0.15 ms | speed=   0.12 ms | view=   5.90 ms | total= 138.85 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000205 | pts_raw=311023 | pts_proc=  4904 | det= 1 | dt_frame= 304.05 ms | prep=  73.95 ms | infer=  59.31 ms | post=   0.14 ms | speed=   0.13 ms | view=   5.69 ms | total= 139.22 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000208 | pts_raw=312367 | pts_proc=  4933 | det= 1 | dt_frame= 307.56 ms | prep=  73.53 ms | infer=  58.21 ms | post=   0.14 ms | speed=   0.12 ms | view=   5.60 ms | total= 137.60 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000211 | pts_raw=312644 | pts_proc=  4878 | det= 1 | dt_frame= 297.86 ms | prep=  70.68 ms | infer=  63.73 ms | post=   0.16 ms | speed=   0.11 ms | view=   5.63 ms | total= 140.31 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000214 | pts_raw=313111 | pts_proc=  4979 | det= 1 | dt_frame= 303.04 ms | prep=  74.23 ms | infer=  62.07 ms | post=   0.16 ms | speed=   0.12 ms | view=   6.47 ms | total= 143.06 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000217 | pts_raw=310890 | pts_proc=  4988 | det= 1 | dt_frame= 308.38 ms | prep=  49.78 ms | infer=  61.87 ms | post=   0.15 ms | speed=   0.11 ms | view=   5.68 ms | total= 117.60 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000219 | pts_raw=310147 | pts_proc=  5033 | det= 1 | dt_frame= 180.71 ms | prep=  44.60 ms | infer=  58.18 ms | post=   0.15 ms | speed=   0.10 ms | view=   5.27 ms | total= 108.31 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000221 | pts_raw=311549 | pts_proc=  5059 | det= 1 | dt_frame= 204.14 ms | prep=  73.49 ms | infer=  64.29 ms | post=   0.17 ms | speed=   0.10 ms | view=   5.42 ms | total= 143.48 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000224 | pts_raw=312464 | pts_proc=  5072 | det= 1 | dt_frame= 314.38 ms | prep=  74.27 ms | infer=  59.91 ms | post=   0.15 ms | speed=   0.11 ms | view=   5.69 ms | total= 140.12 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000227 | pts_raw=313501 | pts_proc=  4978 | det= 1 | dt_frame= 281.29 ms | prep=  60.39 ms | infer=  60.92 ms | post=   0.15 ms | speed=   0.10 ms | view=   5.44 ms | total= 127.01 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000230 | pts_raw=313961 | pts_proc=  4990 | det= 1 | dt_frame= 314.25 ms | prep=  71.28 ms | infer=  58.30 ms | post=   0.15 ms | speed=   0.11 ms | view=   5.74 ms | total= 135.58 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000233 | pts_raw=313772 | pts_proc=  5044 | det= 1 | dt_frame= 295.45 ms | prep=  75.43 ms | infer=  56.99 ms | post=   0.14 ms | speed=   0.10 ms | view=   5.72 ms | total= 138.37 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000236 | pts_raw=313751 | pts_proc=  5055 | det= 1 | dt_frame= 302.53 ms | prep=  73.54 ms | infer=  62.21 ms | post=   0.22 ms | speed=   0.15 ms | view=   5.77 ms | total= 141.89 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000239 | pts_raw=313754 | pts_proc=  5006 | det= 1 | dt_frame= 303.83 ms | prep=  76.59 ms | infer=  57.99 ms | post=   0.15 ms | speed=   0.10 ms | view=   5.42 ms | total= 140.26 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000242 | pts_raw=313320 | pts_proc=  5088 | det= 1 | dt_frame= 285.27 ms | prep=  67.82 ms | infer=  53.70 ms | post=   0.13 ms | speed=   0.10 ms | view=   5.25 ms | total= 127.01 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000245 | pts_raw=313877 | pts_proc=  5172 | det= 1 | dt_frame= 315.15 ms | prep=  75.98 ms | infer=  61.29 ms | post=   0.16 ms | speed=   0.11 ms | view=  18.99 ms | total= 156.53 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000248 | pts_raw=312154 | pts_proc=  5108 | det= 1 | dt_frame= 284.45 ms | prep=  56.51 ms | infer=  52.29 ms | post=   0.13 ms | speed=   0.10 ms | view=   5.09 ms | total= 114.11 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000250 | pts_raw=311315 | pts_proc=  4979 | det= 1 | dt_frame= 197.62 ms | prep=  70.13 ms | infer=  61.79 ms | post=   0.16 ms | speed=   0.12 ms | view=   6.50 ms | total= 138.70 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000252 | pts_raw=310870 | pts_proc=  4835 | det= 1 | dt_frame= 200.11 ms | prep=  45.28 ms | infer=  50.19 ms | post=   0.13 ms | speed=   0.10 ms | view=   5.47 ms | total= 101.17 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000254 | pts_raw=304228 | pts_proc=  4694 | det= 1 | dt_frame= 218.58 ms | prep=  67.25 ms | infer=  57.63 ms | post=   0.16 ms | speed=   0.11 ms | view=   5.54 ms | total= 130.69 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000257 | pts_raw=309753 | pts_proc=  4675 | det= 1 | dt_frame= 291.90 ms | prep=  74.73 ms | infer=  66.25 ms | post=   0.16 ms | speed=   0.10 ms | view=   5.70 ms | total= 146.95 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000260 | pts_raw=298058 | pts_proc=  4923 | det= 1 | dt_frame= 291.27 ms | prep=  68.79 ms | infer=  54.83 ms | post=   0.13 ms | speed=   0.09 ms | view=  12.76 ms | total= 136.60 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000262 | pts_raw=305354 | pts_proc=  5267 | det= 1 | dt_frame= 199.06 ms | prep=  44.57 ms | infer=  52.14 ms | post=   0.13 ms | speed=   0.11 ms | view=   5.13 ms | total= 102.06 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000264 | pts_raw=302838 | pts_proc=  5199 | det= 1 | dt_frame= 199.54 ms | prep=  78.39 ms | infer=  68.65 ms | post=   0.18 ms | speed=   0.11 ms | view=   5.48 ms | total= 152.80 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000267 | pts_raw=311805 | pts_proc=  5269 | det= 1 | dt_frame= 319.31 ms | prep=  77.31 ms | infer=  61.42 ms | post=   0.14 ms | speed=   0.11 ms | view=   5.64 ms | total= 144.62 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000270 | pts_raw=314738 | pts_proc=  5263 | det= 1 | dt_frame= 288.46 ms | prep=  82.75 ms | infer=  54.31 ms | post=   0.13 ms | speed=   0.10 ms | view=   5.49 ms | total= 142.77 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000273 | pts_raw=316088 | pts_proc=  5273 | det= 1 | dt_frame= 299.60 ms | prep=  75.75 ms | infer=  63.06 ms | post=   0.16 ms | speed=   0.11 ms | view=   8.25 ms | total= 147.34 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000276 | pts_raw=316507 | pts_proc=  5212 | det= 1 | dt_frame= 292.39 ms | prep=  73.05 ms | infer=  58.81 ms | post=   0.15 ms | speed=   0.10 ms | view=   5.30 ms | total= 137.41 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000278 | pts_raw=317867 | pts_proc=  5246 | det= 1 | dt_frame= 199.92 ms | prep=  67.53 ms | infer=  61.44 ms | post=   0.16 ms | speed=   0.11 ms | view=   5.56 ms | total= 134.80 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000280 | pts_raw=320750 | pts_proc=  5233 | det= 1 | dt_frame= 200.03 ms | prep=  47.15 ms | infer=  58.99 ms | post=   0.16 ms | speed=   0.10 ms | view=   5.35 ms | total= 111.75 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000282 | pts_raw=319788 | pts_proc=  5273 | det= 1 | dt_frame= 210.52 ms | prep=  71.95 ms | infer=  56.81 ms | post=   0.15 ms | speed=   0.11 ms | view=   5.41 ms | total= 134.42 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000285 | pts_raw=319816 | pts_proc=  5238 | det= 1 | dt_frame= 300.58 ms | prep=  77.94 ms | infer=  59.79 ms | post=   0.14 ms | speed=   0.11 ms | view=   6.46 ms | total= 144.45 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000288 | pts_raw=319084 | pts_proc=  5201 | det= 1 | dt_frame= 309.98 ms | prep=  79.99 ms | infer=  59.82 ms | post=   0.16 ms | speed=   0.10 ms | view=  18.52 ms | total= 158.59 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000291 | pts_raw=319550 | pts_proc=  5228 | det= 1 | dt_frame= 282.22 ms | prep=  68.94 ms | infer=  54.76 ms | post=   0.14 ms | speed=   0.10 ms | view=   5.58 ms | total= 129.52 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000293 | pts_raw=319132 | pts_proc=  5250 | det= 1 | dt_frame= 196.66 ms | prep=  51.70 ms | infer=  53.73 ms | post=   0.14 ms | speed=   0.11 ms | view=   6.33 ms | total= 112.02 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000295 | pts_raw=319637 | pts_proc=  5232 | det= 1 | dt_frame= 209.92 ms | prep=  74.35 ms | infer=  69.32 ms | post=   0.18 ms | speed=   0.11 ms | view=   5.70 ms | total= 149.65 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000298 | pts_raw=319721 | pts_proc=  5265 | det= 1 | dt_frame= 290.19 ms | prep=  83.73 ms | infer=  52.83 ms | post=   0.13 ms | speed=   0.10 ms | view=   5.21 ms | total= 142.00 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000301 | pts_raw=302899 | pts_proc=  5032 | det= 1 | dt_frame= 323.35 ms | prep=  75.22 ms | infer=  61.97 ms | post=   0.16 ms | speed=   0.10 ms | view=   5.39 ms | total= 142.83 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000304 | pts_raw=319750 | pts_proc=  5193 | det= 1 | dt_frame= 284.69 ms | prep=  78.25 ms | infer=  59.67 ms | post=   0.16 ms | speed=   0.10 ms | view=   5.27 ms | total= 143.45 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000307 | pts_raw=319637 | pts_proc=  5216 | det= 1 | dt_frame= 291.93 ms | prep=  55.95 ms | infer=  60.86 ms | post=   0.16 ms | speed=   0.10 ms | view=  12.96 ms | total= 130.03 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+Frame seq=000309 | pts_raw=319621 | pts_proc=  5256 | det= 1 | dt_frame= 199.89 ms | prep=  54.28 ms | infer=  53.68 ms | post=   0.14 ms | speed=   0.10 ms | view=   5.54 ms | total= 113.75 ms
+Cyclist | no detection | v_smooth=  2.16 km/h | v_max=  3.94 km/h | dist=   2.08 m
+
+Chiusura...
