@@ -1,0 +1,22 @@
+[important]
+height = 0.80
+
+[segments]
+r_min = 0.10
+r_max = 72.0
+n_segments = 180
+n_bins = 90
+
+[ground]
+min_slope = -0.12
+max_slope = 0.12
+long_threshold = 1.4
+max_long_height = 0.10
+max_start_height = 0.08
+max_fit_error = 0.10
+max_dist_to_line = 0.08
+line_search_angle = 0.18
+
+[general]
+n_threads = 4
+verbose = false

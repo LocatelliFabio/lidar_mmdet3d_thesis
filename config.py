@@ -16,8 +16,18 @@ PREPROCESS_CFG = {
     "denoise": False,
     "den_voxel": 0.35,
     "den_min_pts": 2,
+
+    # "grid" | "linefit" | "none"
+    "ground_method": "linefit",
+
+    # ground_method == "grid"
     "ground_cell": 0.5,
     "ground_thresh": 0.07,
+
+    # ground_method == "linefit"
+    "linefit_cfg": {
+        "config_path": "linefit_config.toml",
+    },
 }
 
 LIDAR_CFG = {
