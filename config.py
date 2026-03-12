@@ -23,7 +23,8 @@ PREPROCESS_CFG = {
 LIDAR_CFG = {
     "msop_port": 6699,
     "difop_port": 7788,
-    "host_address": "0.0.0.0",
+    #"host_address": "192.168.1.102",
+    "host_address": "127.0.0.1",
     "group_address": "0.0.0.0",
 }
 
@@ -33,8 +34,8 @@ VIEWER_CFG = {
     "height": 720,
     "point_size": 1.5,
 
-    "camera_position": [0.0, 0.0, 2.0],
-    "camera_lookat": [15.0, 0.0, 0.5],
+    "camera_position": [-1.0, 0.0, 0.0],
+    "camera_lookat": [1.0, 0.0, 0.0],
 }
 
 LOOP_SLEEP_SEC = 0.002

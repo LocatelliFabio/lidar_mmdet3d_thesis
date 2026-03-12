@@ -1,0 +1,1 @@
+sudo taskset -c 1 nice -n -20 /home/cal/miniconda3/envs/fabio_mmdet3d_lidar/bin/python main.py

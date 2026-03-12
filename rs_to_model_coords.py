@@ -13,4 +13,6 @@ def rs_to_model_coords(points: np.ndarray) -> np.ndarray:
     if points.shape[1] > 3:
         out[:, 3] = points[:, 3]
 
+    # out[:, 3] -= 0.5
+
     return out

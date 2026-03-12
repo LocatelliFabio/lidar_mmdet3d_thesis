@@ -33,8 +33,8 @@ class LiveViewer3D:
         width=1280,
         height=720,
         point_size=1.5,
-        camera_position=(0.0, 0.0, 2.0),
-        camera_lookat=(15.0, 0.0, 0.5),
+        camera_position=(0.0, 0.0, 0.0),  # Telecamera inizialmente a (0, 0, 0)
+        camera_lookat=(1.0, 0.0, 0.0),    # La telecamera guarda verso avanti
     ):
         self.vis = o3d.visualization.Visualizer()
         self.vis.create_window(window_name, width, height)
@@ -42,10 +42,11 @@ class LiveViewer3D:
         self.pcd = o3d.geometry.PointCloud()
         self.vis.add_geometry(self.pcd)
 
-        # self.axis = o3d.geometry.TriangleMesh.create_coordinate_frame(
-        #     size=2.0, origin=[0.0, 0.0, 0.0]
-        # )
-        # self.vis.add_geometry(self.axis)
+        if False:
+            self.axis = o3d.geometry.TriangleMesh.create_coordinate_frame(
+                size=2.0, origin=[0.0, 0.0, 0.0]
+            )
+            self.vis.add_geometry(self.axis)
 
         self.box_geometries = []
 
@@ -66,15 +67,12 @@ class LiveViewer3D:
         self.vis.update_renderer()
 
         # Open3D usa front come vettore scena -> camera
-        front = self.camera_position - self.camera_lookat
+        # Ora la telecamera deve guardare lungo l'asse X (verso il punto (1.0, 0.0, 0.0))
+        front = np.array([1.0, 0.0, 0.0], dtype=np.float64)
         norm = np.linalg.norm(front)
-        if norm < 1e-9:
-            front = np.array([-1.0, 0.0, 0.12], dtype=np.float64)
-        else:
-            front = front / norm
 
         ctr.set_lookat(self.camera_lookat.tolist())
-        ctr.set_front(front.tolist())
+        ctr.set_front(front.tolist())  # Direzione di "avanti" lungo l'asse X
         ctr.set_up([0.0, 0.0, 1.0])
 
         # zoom fisso interno: non serve metterlo in config

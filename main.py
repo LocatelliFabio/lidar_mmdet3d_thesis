@@ -68,6 +68,8 @@ def main():
 
     lidar.start()
 
+    i = 0
+
     try:
         while True:
             raw_points, frame_ts, seq = frame_buffer.get_latest_copy()
@@ -76,8 +78,15 @@ def main():
                 viewer.spin_once()
                 sleep(LOOP_SLEEP_SEC)
                 continue
-
+            
             last_seq = seq
+
+            if i < 1:
+                i = i + 1
+                continue
+            else:
+                i = 0
+
 
             t0 = perf_counter()
 
